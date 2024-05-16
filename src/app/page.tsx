@@ -8,6 +8,7 @@ export default function Home() {
       {/* this is an example to show what the component looks like */}
       {/* from database info, we can generate topic cards dynamically */}
       <TopicCard topicName="React" />
+      <TopicCard topicName="Type Script" />
     </main>
   );
 }
