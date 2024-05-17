@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
+import Header from "../components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ 
+  subsets: ['latin'],
+  display: 'swap' 
+})
 
 export const metadata: Metadata = {
   title: "Plums | Home",
@@ -15,8 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={quicksand.className}>
+      <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  rel="stylesheet"></link>
+      </head>
+      <body>
+        <Header hasPlus="true" />
+        {children}
+      </body>
     </html>
   );
 }
