@@ -1,7 +1,11 @@
 import Image from "next/image";
 
-export default function Header({ hasPlus }) {
-  if (hasPlus == "true") {
+export interface Props {
+  hasPlus: string;
+}
+
+const Header = (props: Props) => {
+  if (props.hasPlus == "true") {
     return (
       <div className="flex justify-between items-center bg-plum-300">
         <div className="flex items-center">
@@ -32,3 +36,5 @@ export default function Header({ hasPlus }) {
     )
   }
 }
+
+export default Header;
