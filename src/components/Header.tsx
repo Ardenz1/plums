@@ -1,7 +1,8 @@
 import Image from "next/image";
 
 export interface Props {
-  hasPlus: string;
+  hasPlus: string
+  page: string; 
 }
 
 const Header = (props: Props) => {
@@ -9,17 +10,20 @@ const Header = (props: Props) => {
     return (
       <div className="flex justify-between items-center bg-plum-300">
         <div className="flex items-center">
+        <a href={props.page}>
           <Image
-            src="plums_logo.svg"
+            src="/plums_logo.svg"
             width={82}
             height={75}
             alt="PLUMS logo"
             className="max-h-20 my-3 ml-1"
-          ></Image>
+          ></Image> </a>
           <p className="text-white text-xl">PLUMS</p>
+       
         </div>
         <i className="fa-solid fa-plus p-2 mx-5 bg-leaf-100 rounded-xl text-lg"></i>
       </div>
+     
     )
   } else {
     return (
