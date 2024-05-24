@@ -8,15 +8,12 @@ export interface Props{
 const NoteCard = (props: Props) => {
     // database call for number of each items should go here
     return (
-        <section>
         <div className="items-center bg-plum-100 p-5 rounded-2xl mb-2">
-        <h2 className="text-sm text-plum-300 font-bold">{props.title}</h2>
-        <h3 className="text-xs text-plum-300 font-thin">{props.note_created_at}</h3>
-        <p className="text-sm text-plum-300 pt-2 line-clamp-4">{props.description}</p>
+            <h2 className="text-sm text-plum-300 font-bold">{props.title}</h2>
+            <h3 className="text-xs text-plum-300 font-thin">{props.note_created_at}</h3>
+            <p className="text-sm text-plum-300 pt-2 line-clamp-4">{props.description}</p>
         </div>
-        </section>
-
     )
 }
 
-export default NoteCard
+export default NoteCard;
