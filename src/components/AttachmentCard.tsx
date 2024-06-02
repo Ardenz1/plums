@@ -31,7 +31,7 @@ const AttachmentCard = (props: Props) => {
       <i className={`${fileIcon} text-4xl mb-3`}></i>
       <h2 className="font-bold text-sm">{props.attachmentTitle}</h2>
       <p className="font-thin text-xs mb-3">{dateString}</p>
-      <p className="text-sm">{props.attachmentDescription}</p>
+      <p className="text-sm line-clamp-4">{props.attachmentDescription}</p>
     </div>
   )
 }

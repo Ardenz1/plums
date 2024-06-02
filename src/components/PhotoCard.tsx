@@ -26,7 +26,7 @@ const PhotoCard = (props: Props) => {
       />
       <h2 className="text-sm font-bold">{props.photoTitle}</h2>
       <p className="text-xs mb-3 font-thin">{dateString}</p>
-      <p className="text-sm">{props.photoDescription}</p>
+      <p className="text-sm line-clamp-4">{props.photoDescription}</p>
     </div>
   )
 }
