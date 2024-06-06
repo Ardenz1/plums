@@ -1,8 +1,14 @@
-import PhotoCard from "@/components/PhotoCard"
+import PhotoCard from "@/components/PhotoCard";
 import BackButton from "@/components/BackButton";
 
-export default function photos() {
+export default async function photos() {
   let date = new Date();
+  // let img = new Image()
+  // img.src = "/pic1.jpg"
+  // const blob1 = fetch().then(function(res) {
+  //   return res.blob();
+  // })
+  // console.log(blob1)
   return(
     <main>
       <BackButton back="/topicDetails" />
