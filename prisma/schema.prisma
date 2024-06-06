@@ -13,9 +13,11 @@ datasource db {
 // Topics table
 model Topic {
   topic_id      Int      @id @default(autoincrement())
-  topic_name          String   
+  topic_name    String   
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
+  // is there a parent to the topic? null
+  parent_id     Int?
 
   // Define the one-to-many relationship with Topic_Details
   topic_details Topic_Detail[]
