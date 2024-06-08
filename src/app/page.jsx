@@ -14,6 +14,7 @@ export default async function Home() {
           return (
             <TopicCard 
               key={topic.topic_id}
+              topicId={topic.topic_id}
               topicName={topic.topic_name}
             />
           )
