@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,89 +7,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Topics table
 model Topic {
-  topic_id      Int      @id @default(autoincrement())
-  topic_name    String   
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
-  // is there a parent to the topic? null
+  topic_id      Int            @id @default(autoincrement())
+  topic_name    String
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
   parent_id     Int?
-
-  // Define the one-to-many relationship with Topic_Details
   topic_details Topic_Detail[]
 }
 
-// Topic_Details table
 model Topic_Detail {
-  topic_detail_id              Int      @id @default(autoincrement())
-  topic_detail_title           String
-  topic_detail_amount          Int
-  topic_detail_created_at      DateTime @default(now())
-  topic_detail_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic
-  topic           Topic    @relation(fields: [topic_id], references: [topic_id])
-  topic_id        Int
-
-  // Define the one-to-many relationships with Notes, Links, Photos, and Attachments
-  notes           Note[]
-  links           Link[]
-  photos          Photo[]
-  attachments     Attachment[]
+  topic_detail_id         Int          @id @default(autoincrement())
+  topic_id                Int
+  topic_detail_amount     Int
+  topic_detail_created_at DateTime     @default(now())
+  topic_detail_title      String
+  topic_detail_updated_at DateTime     @updatedAt
+  attachments             Attachment[]
+  links                   Link[]
+  notes                   Note[]
+    photos                  Photo[]
+  topic                   Topic        @relation(fields: [topic_id], references: [topic_id])
 }
 
-// Notes table
 model Note {
-  note_id              Int      @id @default(autoincrement())
-  note_header          String
-  note_description     String?
-  note_created_at      DateTime @default(now())
-  note_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic_Detail
-  topic_detail    Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
-  topic_detail_id Int
+  note_id          Int          @id @default(autoincrement())
+  note_header      String
+  note_description String?
+  note_created_at  DateTime     @default(now())
+  note_updated_at  DateTime     @updatedAt
+  topic_detail_id  Int
+  topic_detail     Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
 
-// Links table
 model Link {
-  link_id              Int      @id @default(autoincrement())
-  link_header          String
-  link_description     String?
-  link_hyperlink       String
-  link_created_at      DateTime @default(now())
-  link_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic_Detail
-  topic_detail    Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
-  topic_detail_id Int
+  link_id          Int          @id @default(autoincrement())
+  link_header      String
+  link_description String?
+  link_hyperlink   String
+  link_created_at  DateTime     @default(now())
+  link_updated_at  DateTime     @updatedAt
+  topic_detail_id  Int
+  topic_detail     Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
 
-// Photos table
 model Photo {
-  photo_id              Int      @id @default(autoincrement())
-  photo_header          String
-  photo_description     String?
-  photo_image           Bytes
-  photo_created_at      DateTime @default(now())
-  photo_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic_Detail
-  topic_detail    Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
-  topic_detail_id Int
+  photo_id          Int          @id @default(autoincrement())
+  photo_header      String
+  photo_description String?
+  photo_image       Bytes
+  photo_created_at  DateTime     @default(now())
+  photo_updated_at  DateTime     @updatedAt
+  topic_detail_id   Int
+  topic_detail      Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
 
-// Attachments table
 model Attachment {
-  attachment_id              Int      @id @default(autoincrement())
-  attachment_header          String
-  attachment_description     String?
-  attachment_link            Bytes
-  attachment_created_at      DateTime @default(now())
-  attachment_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic_Detail
-  topic_detail    Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
-  topic_detail_id Int
+  attachment_id          Int          @id @default(autoincrement())
+  attachment_header      String
+  attachment_description String?
+  attachment_link        Bytes
+  attachment_created_at  DateTime     @default(now())
+  attachment_updated_at  DateTime     @updatedAt
+  topic_detail_id        Int
+  topic_detail           Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
