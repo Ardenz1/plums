@@ -17,7 +17,6 @@ model Topic {
 }
 
 model Topic_Detail {
-<<<<<<< HEAD
   topic_detail_id              Int      @id @default(autoincrement())
   topic_detail_title           String
   topic_detail_amount          Int
@@ -34,19 +33,6 @@ model Topic_Detail {
   photos          Photo[]
   attachments     Attachment[]
   
-=======
-  topic_detail_id         Int          @id @default(autoincrement())
-  topic_id                Int
-  topic_detail_amount     Int
-  topic_detail_created_at DateTime     @default(now())
-  topic_detail_title      String
-  topic_detail_updated_at DateTime     @updatedAt
-  attachments             Attachment[]
-  links                   Link[]
-  notes                   Note[]
-    photos                  Photo[]
-  topic                   Topic        @relation(fields: [topic_id], references: [topic_id])
->>>>>>> 388175af63a472049305b5ea3a4398b0743b9164
 }
 
 model Note {
