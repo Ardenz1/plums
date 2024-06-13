@@ -9,8 +9,11 @@ const quicksand = Quicksand({
 })
 
 export const metadata: Metadata = {
-  title: "Plums | Home",
-  description: "Plums learning, taking educational notes",
+  title: {
+    template: '%s | PLUMS',
+    default: 'Home'
+  },
+  description: "Plums learning, organizing your education",
 };
 
 export default function RootLayout({

@@ -1,6 +1,12 @@
+import { Metadata } from "next";
+
 import BackButton from "@/components/BackButton"
 import LinkCardSingle from "@/components/LinkCardSingle"
 import DeleteEditBtns from "@/components/DeleteEditBtns"
+
+export const metadata: Metadata = {
+  title: 'Link',
+};
 
 export default function SingleLink() {
   return (

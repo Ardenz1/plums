@@ -1,5 +1,11 @@
+import { Metadata } from "next";
+
 import BackButton from "@/components/BackButton"
 import LinkCard from "@/components/LinkCard"
+
+export const metadata: Metadata = {
+  title: 'Links',
+};
 
 export default function Links() {
     return (

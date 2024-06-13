@@ -1,5 +1,11 @@
+import { Metadata } from "next";
+
 import BackButton from "@/components/BackButton"
 import NoteCard from "@/components/NoteCard"
+
+export const metadata: Metadata = {
+  title: 'Notes',
+};
 
 export default function Notes() {
   return (

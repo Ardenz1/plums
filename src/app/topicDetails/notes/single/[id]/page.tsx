@@ -1,6 +1,12 @@
+import { Metadata } from "next";
+
 import BackButton from "@/components/BackButton"
 import NoteCardSingle from "@/components/NoteCardSingle"
 import DeleteEditBtns from "@/components/DeleteEditBtns"
+
+export const metadata: Metadata = {
+  title: 'Note',
+};
 
 export default function SingleNote() {
   return (

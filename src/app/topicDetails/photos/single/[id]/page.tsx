@@ -1,8 +1,14 @@
+import { Metadata } from "next";
+
 import PhotoCardSingle from "@/components/PhotoCardSingle";
 import BackButton from "@/components/BackButton";
 import DeleteEditBtns from "@/components/DeleteEditBtns";
 
-export default async function photos() {
+export const metadata: Metadata = {
+  title: 'Photo',
+};
+
+export default async function PhotoSingle() {
   let date = new Date();
   // let img = new Image()
   // img.src = "/pic1.jpg"

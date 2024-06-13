@@ -1,8 +1,14 @@
+import { Metadata } from "next";
+
 import TopicCard from "../components/TopicCard";
 import SubTopicCard from "@/components/SubTopicCard";
 
 import { getAllTopics } from "@/database/database";
 import { Topic } from "@prisma/client";
+
+export const metadata: Metadata = {
+  title: 'Topics',
+};
 
 export default async function Home() {
   // database call!!
@@ -19,8 +25,7 @@ export default async function Home() {
               key={topic.topic_id}
               topicId={topic.topic_id}
               topicName={topic.topic_name}
-              // Jojo's topic column does not know????
-              parentId={1}
+              parentId={topic.parent_id}
             />
           )
             // <TopicCard topicName="React" parentId={1} />

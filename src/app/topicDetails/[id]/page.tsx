@@ -1,6 +1,13 @@
+import { Metadata } from "next"
+
 import TopicDetails from "@/components/TopicDetails"
 import BackButton from "@/components/BackButton"
+
 import { getTopicDetails } from "@/database/database"
+
+export const metadata: Metadata = {
+  title: 'Topic Details',
+};
 
 export default async function TopicDetailsPage({ params }: { params: { id: string } }){
   // gets topic details on topic_detail_id

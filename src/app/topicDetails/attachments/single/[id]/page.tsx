@@ -1,8 +1,14 @@
+import { Metadata } from "next";
+
 import AttachmentCardSingle from "@/components/AttachmentCardSingle";
 import BackButton from "@/components/BackButton";
 import DeleteEditBtns from "@/components/DeleteEditBtns";
 
-export default function photos() {
+export const metadata: Metadata = {
+  title: 'Attachment',
+};
+
+export default function AttachmentSingle() {
   let date = new Date();
   return(
     <main>
