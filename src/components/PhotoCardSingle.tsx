@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CopyBtn from "./CopyBtn";
 
 export interface Props {
   photoBlob: string;
@@ -24,7 +25,10 @@ const PhotoCard = (props: Props) => {
         sizes="100vw"
         className="w-full h-auto rounded-xl mb-2"
       />
+      <div className="flex justify-between">
       <h2 className="text-sm font-bold">{props.photoTitle}</h2>
+      <CopyBtn copyText={props.photoDescription}/>
+      </div>
       <p className="text-xs mb-3 font-thin">{dateString}</p>
       <p className="text-sm line-clamp-4">{props.photoDescription}</p>
     </div>

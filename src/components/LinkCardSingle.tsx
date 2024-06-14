@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import CopyBtn from "./CopyBtn";
 
 export interface Props {
   title: string;
@@ -12,11 +13,15 @@ const LinkCardSingle = (props: Props) => {
   return (
     <Fragment>
       <div className="items-center bg-plum-100 p-5 rounded-2xl mb-2">
+        <div className="flex justify-between">
         <h2 className="text-sm text-plum-300 font-bold">{props.title}</h2>
+        <CopyBtn copyText={props.link}/>
+        </div>
         <h3 className="text-xs text-plum-300 font-thin ">{props.link_created_at}</h3>
         <a className="text-sm text-plum-300 pt-2 line-clamp-4 underline"  href={props.link}>{props.link}</a>
         <p className="text-sm text-plum-300 pt-2 line-clamp-4">{props.description}</p>
       </div>
+
     </Fragment>
   )
 }

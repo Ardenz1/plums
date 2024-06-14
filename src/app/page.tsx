@@ -11,28 +11,37 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // database call!!
   let topicList: Topic[] = await getAllTopics();
   
+  const renderTopics = (topics: Topic[], parentId: number | null = null, level: number = 0) => {
+    return topics
+      .filter(topic => topic.parent_id === parentId)
+      .map(topic => {
+        return (
+          <div key={topic.topic_id} style={{ marginLeft: `${level * 20}px` }}>
+            {parentId === null ? (
+              <TopicCard 
+                topicId={topic.topic_id}
+                topicName={topic.topic_name}
+                parentId={topic.parent_id}
+              />
+            ) : (
+              <SubTopicCard
+                topicId={topic.topic_id}
+                topicName={topic.topic_name}
+                parentId={topic.parent_id}
+              />
+            )}
+            {renderTopics(topics, topic.topic_id, level + 1)}
+          </div>
+        );
+      });
+  };
   return (
     <main>
       <h1>Topics</h1>
-      {/* dynamically generating cards from database data!! */}
-      {
-        topicList.map(topic => {
-          return (
-            <TopicCard 
-              key={topic.topic_id}
-              topicId={topic.topic_id}
-              topicName={topic.topic_name}
-              parentId={topic.parent_id}
-            />
-          )
-            // <TopicCard topicName="React" parentId={1} />
-            // <SubTopicCard topicName="syntax" />
-            // <TopicCard topicName="Type Script" parentId={null}/>
-        })
-      }
+      {renderTopics(topicList)}
+
     </main>
   );
 }
