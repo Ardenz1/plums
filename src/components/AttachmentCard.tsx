@@ -2,8 +2,8 @@
 export interface Props {
   attachment: string;
   attachmentTitle: string;
-  attachmentDescription: string;
   attachmentCreated: Date;
+  attachmentDescription: string | null;
 }
 
 const AttachmentCard = (props: Props) => {

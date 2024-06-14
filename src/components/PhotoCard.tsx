@@ -3,8 +3,8 @@ import Image from "next/image";
 export interface Props {
   photoBlob: string;
   photoTitle: string;
-  photoDescription: string;
   photoCreated: Date;
+  photoDescription: string | null;
 }
 
 const PhotoCard = (props: Props) => {
