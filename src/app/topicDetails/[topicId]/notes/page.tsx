@@ -33,6 +33,8 @@ export default async function Notes({ params }: { params: { topicId: string } })
                 note_title={note.note_header}
                 note_created_at={note.note_created_at}
                 note_description={note.note_description} 
+                singleView={`/topicDetails/${params.topicId}/notes/${note.note_id}`} 
+                // added the above code, might need to take out 
               />
             )
           })

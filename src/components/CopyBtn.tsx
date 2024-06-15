@@ -10,7 +10,7 @@ export interface Props {
           navigator.clipboard.writeText(props.copyText);
         }}
       >
-        <i className="fa-solid fa-copy"></i>
+        <i className="fa-regular fa-copy text-plum-300"></i>
       </button>
     );
   } 

@@ -36,6 +36,7 @@ export default async function Attachments({ params }: { params: { topicId: strin
                 attachmentTitle={attachment.attachment_header}
                 attachmentCreated={attachment.attachment_created_at} 
                 attachmentDescription={attachment.attachment_description} 
+                attachmentSingleView={`/topicDetails/${params.topicId}/notes/${attachment.attachment_id}`}
               />
             )
           })

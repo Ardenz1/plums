@@ -36,7 +36,8 @@ export default async function Photos({ params }: { params: { topicId: string } }
                 photoTitle={photo.photo_header} 
                 photoCreated={photo.photo_created_at}
                 photoDescription={photo.photo_description}
-              />
+                singleView={`/topicDetails/${params.topicId}/photos/${photo.photo_id}`}              
+                />
             )
           })
         }

@@ -4,6 +4,7 @@ export interface Props {
   attachmentTitle: string;
   attachmentCreated: Date;
   attachmentDescription: string | null;
+  attachmentSingleView: string;
 }
 
 const AttachmentCard = (props: Props) => {
@@ -27,12 +28,14 @@ const AttachmentCard = (props: Props) => {
     fileIcon = 'fa-solid fa-file'
   }
   return (
+    <a href={props.attachmentSingleView}>
     <div className="bg-plum-100 p-5 rounded-2xl mb-2">
       <i className={`${fileIcon} text-4xl mb-3`}></i>
       <h2 className="font-bold text-sm">{props.attachmentTitle}</h2>
       <p className="font-thin text-xs mb-3">{dateString}</p>
       <p className="text-sm line-clamp-4">{props.attachmentDescription}</p>
     </div>
+    </a>
   )
 }
 

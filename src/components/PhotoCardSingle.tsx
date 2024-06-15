@@ -8,7 +8,7 @@ export interface Props {
   photoCreated: Date;
 }
 
-const PhotoCard = (props: Props) => {
+const PhotoCardSingle = (props: Props) => {
   // use this as the source attribute if the database stores images as blobs
   // URL.createObjectURL(props.photoBlob);
 
@@ -35,4 +35,4 @@ const PhotoCard = (props: Props) => {
   )
 }
 
-export default PhotoCard;
+export default PhotoCardSingle;

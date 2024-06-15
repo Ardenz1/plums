@@ -5,6 +5,7 @@ export interface Props {
   photoTitle: string;
   photoCreated: Date;
   photoDescription: string | null;
+  singleView:string;
 }
 
 const PhotoCard = (props: Props) => {
@@ -14,6 +15,7 @@ const PhotoCard = (props: Props) => {
   let date = String(props.photoCreated).split(' ');
   let dateString = `${date[1]} ${date[2]}, ${date[3]}`;
   return (
+    <a href={props.singleView}>
     <div className="bg-plum-100 p-5 rounded-2xl mb-2">
       {/* right now, for testing, the photoBlob attribute takes a route, and not a blob */}
       <Image
@@ -28,6 +30,7 @@ const PhotoCard = (props: Props) => {
       <p className="text-xs mb-3 font-thin">{dateString}</p>
       <p className="text-sm line-clamp-4">{props.photoDescription}</p>
     </div>
+    </a>
   )
 }
 
