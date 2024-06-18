@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 
 export default async function Notes({ params }: { params: { topicId: string, noteId: string } }) {
-  const note = await getNoteById(parseInt(params.topicId));
+  const note = await getNoteById(parseInt(params.noteId));
 
 
   if (!note) {

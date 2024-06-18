@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AttachmentSingle({ params }: { params: { topicId: string, attachmentId: string } }) {
-  const attachment = await getAttachmentById(parseInt(params.topicId));
+  const attachment = await getAttachmentById(parseInt(params.attachmentId));
 
 
   if (!attachment) {

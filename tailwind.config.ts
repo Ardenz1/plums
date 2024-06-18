@@ -8,6 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        customSpinAnimation: {
+          '0%, 100%': {
+            transform: 'rotateY(0deg)',
+          },
+          '50%': {
+            transform: 'rotateY(180deg)',
+          },
+        },
+      },
+      animation: {
+        customSpinAnimation: 'customSpinAnimation 1s ease-in-out',
+      },
       colors: {
         "plum-300": '#3E0B5E',
         "plum-200": '#AF95E2',

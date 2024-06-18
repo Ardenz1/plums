@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SingleLink({ params }: { params: { topicId: string, linkId: string } }) {
-  const link = await getLinkById(parseInt(params.topicId));
+  const link = await getLinkById(parseInt(params.linkId));
 
   if (!link) {
     return (

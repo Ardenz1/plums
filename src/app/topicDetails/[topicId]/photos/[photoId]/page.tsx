@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PhotoSingle({ params }: { params: { topicId: string, photoId: string } }) {
-  const photo = await getPhotoById(parseInt(params.topicId));
+  const photo = await getPhotoById(parseInt(params.photoId));
 
 
   if (!photo) {
