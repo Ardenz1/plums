@@ -27,11 +27,11 @@ export default async function SingleLink({ params }: { params: { topicId: string
       <BackButton back={`/topicDetails/${params.topicId}/links`} />
       <h1>Link</h1>
       <LinkCardSingle
-        key={link.note_id}
-        link_title={link.note_header}
-        link_hyperlink={link.note_hyperlink}
-        link_created_at={link.note_created_at}
-        link_description={link.note_description!}
+        key={link.link_id}
+        link_title={link.link_header}
+        link_hyperlink={link.link_hyperlink}
+        link_created_at={link.link_created_at}
+        link_description={link.link_description!}
       />
       <DeleteEditBtns />
     </main>

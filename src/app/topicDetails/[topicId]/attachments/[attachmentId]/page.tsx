@@ -29,7 +29,7 @@ export default async function AttachmentSingle({ params }: { params: { topicId: 
       <h1>Attachment</h1>
       <AttachmentCardSingle
         key={attachment.attachment_id}
-        attachment={attachment.attachment}
+        attachment="file.docx"
         attachmentTitle={attachment.attachment_header}
         attachmentCreated={attachment.attachment_created_at}
         attachmentDescription={attachment.attachment_description!}

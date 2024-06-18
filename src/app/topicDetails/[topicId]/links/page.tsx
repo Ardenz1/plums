@@ -34,7 +34,7 @@ export default async function Links({ params }: { params: { topicId: string } })
                 link_created_at={link.link_created_at} 
                 link_hyperlink={link.link_hyperlink} 
                 link_description={link.link_description}
-                link_single_view={`/topicDetails/${params.topicId}/notes/${link.link_id}`} 
+                link_single_view={`/topicDetails/${params.topicId}/links/${link.link_id}`} 
 
               />
             )
