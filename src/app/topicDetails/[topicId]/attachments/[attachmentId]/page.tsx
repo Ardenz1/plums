@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import AttachmentCardSingle from "@/components/AttachmentCardSingle";
 import BackButton from "@/components/BackButton";
-import DeleteEditBtns from "@/components/DeleteEditBtns";
+import FooterButtons from "@/components/FooterButtons";
 
 import { getAttachmentById } from "@/database/database";
 
@@ -21,7 +21,7 @@ export default async function AttachmentSingle({ params }: { params: { topicId: 
         <h1>Attachment</h1>
         <p>No attachment found with the given ID 😞</p>
       </main>
-    );
+    )
   }
   return (
     <main>
@@ -34,9 +34,9 @@ export default async function AttachmentSingle({ params }: { params: { topicId: 
         attachmentCreated={attachment.attachment_created_at}
         attachmentDescription={attachment.attachment_description!}
       />
-      <DeleteEditBtns />
+      <FooterButtons buttonType="delete" />
     </main>
-  );
+  )
 }
 
 

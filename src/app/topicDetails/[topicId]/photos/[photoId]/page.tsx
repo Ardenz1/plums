@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import PhotoCardSingle from "@/components/PhotoCardSingle";
 import BackButton from "@/components/BackButton";
-import DeleteEditBtns from "@/components/DeleteEditBtns";
+import FooterButtons from "@/components/FooterButtons";
 
 import { getPhotoById } from "@/database/database";
 
@@ -34,7 +34,7 @@ export default async function PhotoSingle({ params }: { params: { topicId: strin
         photoCreated={photo.photo_created_at}
         photoDescription={photo.photo_description!}
       />
-      <DeleteEditBtns />
+      <FooterButtons buttonType="delete" />
     </main>
   );
 }

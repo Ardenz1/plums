@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import BackButton from "@/components/BackButton"
 import NoteCardSingle from "@/components/NoteCardSingle"
-import DeleteEditBtns from "@/components/DeleteEditBtns"
+import FooterButtons from "@/components/FooterButtons"
 
 import { getNoteById } from "@/database/database";
 
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default async function Notes({ params }: { params: { topicId: string, noteId: string } }) {
   const note = await getNoteById(parseInt(params.noteId));
-
 
   if (!note) {
     return (
@@ -34,7 +33,7 @@ export default async function Notes({ params }: { params: { topicId: string, not
         note_created_at={note.note_created_at}
         note_description={note.note_description!}
       />
-      <DeleteEditBtns />
+      <FooterButtons buttonType="delete" />
     </main>
   );
 }

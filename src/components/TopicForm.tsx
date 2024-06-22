@@ -1,33 +1,38 @@
-import { Fragment } from "react";
-import DeleteEditBtns from "./DeleteEditBtns";
+import FooterButtons from "./FooterButtons";
 
 export interface Props {
-    topicName: string;
-  }
+  topicName: string;
+}
   
-  const PhotoForm = (props: Props) => {
+const TopicForm = (props: Props) => {
+  // replace with call to the database
+  let tags = [
+    {tag_id: 1, tag: "javascript"},
+    {tag_id: 2, tag: "react"},
+    {tag_id: 3, tag: "typescript"},
+    {tag_id: 4, tag: "python"},
+  ]
   
-    return (
-      <Fragment>
-    <h1 className="text-plum-300 ">Create Topic </h1>
-      <form>
-        <label htmlFor="topicName" className="block text-sm font-medium text-plum-300">Topic Name</label>
-        <input id="topicName" name="topicName" value={props.topicName || ""} className="border-4 rounded-xl border-leaf-200 px-2 py-2  mb-3 w-full" type="text"/>
+  return (
+    <form>
+      <label htmlFor="topicName" className="block text-sm font-medium text-plum-300">Topic Name</label>
+      <input id="topicName" name="topicName" value={props.topicName || ""} className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full" type="text"/>
 
-        {/* this is just a visual for now, we will need to change this later to be able to pick multiple */}
-        <label htmlFor="Tags" className="text-sm font-medium text-plum-300">Choose a tag:</label>
-        <select className="border-4 rounded-xl border-leaf-200 px-2 py-2  mb-3 w-full" id="Tags" name="Tags">
-        <option value="react">None</option>
-        <option value="react">react</option>
-        <option value="typescript">typescript</option>
-        <option value="javascript">javascript</option>
-        <option value="python">python</option>
-        </select>
-      </form>
-      <DeleteEditBtns/>
-  
-      </Fragment>
-    )
-  }
-  
-  export default PhotoForm;
+      {/* this is just a visual for now, we will need to change this later to be able to pick multiple */}
+      <label htmlFor="Tags" className="text-sm font-medium text-plum-300">Choose a tag</label>
+      <select className="bg-transparent block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full" id="tags" name="tags">
+        <option value="none" selected>Select</option>
+        {
+          tags.map(tag => {
+            return (
+              <option key={tag.tag_id} value={tag.tag_id}>{tag.tag}</option>
+            )
+          })
+        }
+      </select>
+      <FooterButtons buttonType="create"/>
+    </form>
+  )
+}
+
+export default TopicForm;

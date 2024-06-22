@@ -69,7 +69,14 @@ export async function getAllTopics() {
 // GET topic details by topic id 
 export async function getTopicDetails(topic_detail_id: number) {
   const topicDetails = await prisma.topic_Detail.findUnique({
-    where: { topic_detail_id: topic_detail_id }
+    where: { topic_detail_id: topic_detail_id},
+    select: {
+      notes: true,
+      links: true,
+      photos: true,
+      attachments: true
+    }
+    
   });
   return topicDetails;
 }

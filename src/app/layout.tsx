@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
+import { usePathname } from "next/navigation";
 
 const quicksand = Quicksand({ 
   subsets: ['latin'],
@@ -21,13 +22,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en" className={quicksand.className}>
       <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  rel="stylesheet"></link>
       </head>
       <body>
-        <Header hasPlus="true" page="/"/>
+        <Header />
         {children}
       </body>
     </html>
