@@ -18,7 +18,7 @@ export default async function TopicDetailsPage({ params }: { params: { topicId: 
   return (
     <main>
       <BackButton back="/" />
-      <h1>React</h1>
+      <h1>dynamic name needs to be added</h1>
       {/* ^^ this needs to get the name from the database call of the topic */}
       <TopicDetails topicId={parseInt(params.topicId)} />
     </main>
