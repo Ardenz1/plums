@@ -3,11 +3,8 @@ import { Metadata } from "next";
 import BackButton from "@/components/BackButton"
 import LinkCardSingle from "@/components/LinkCardSingle"
 import FooterButtons from "@/components/FooterButtons"
-<<<<<<< Updated upstream
 
 import { getLinkById } from "@/database/database";
-=======
->>>>>>> Stashed changes
 
 export const metadata: Metadata = {
   title: 'Link',
@@ -29,7 +26,7 @@ export default async function SingleLink({ params }: { params: { topicId: string
     <main>
       <BackButton back={`/topicDetails/${params.topicId}/links`} />
       <h1>Link</h1>
-<<<<<<< Updated upstream
+
       <LinkCardSingle
         key={link.link_id}
         link_title={link.link_header}
@@ -37,14 +34,10 @@ export default async function SingleLink({ params }: { params: { topicId: string
         link_created_at={link.link_created_at}
         link_description={link.link_description!}
       />
-      <DeleteEditBtns />
-=======
-      <LinkCardSingle title="Link 1" link_created_at="April 1, 2024" link="https://www.google.com" description="this is a link description!!!"/>
       <FooterButtons buttonType="delete"/>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+      {/* <LinkCardSingle title="Link 1" link_created_at="April 1, 2024" link="https://www.google.com" description="this is a link description!!!"/>
+      <FooterButtons buttonType="delete"/> */}
     </main>
   );
 }

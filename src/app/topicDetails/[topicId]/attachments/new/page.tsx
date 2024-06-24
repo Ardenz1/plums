@@ -13,7 +13,7 @@ export default async function NewAttachmentPage(){
       <BackButton back="/topicDetails/${params.topicId}/notes" />
       <h1 className="text-plum-300 ">Create Attachment</h1>
       <AttachmentForm 
-        attachmentTitle=""
+        attachmentTitle="123"
         attachmentLink=""
         attachmentDescription=""
       />
