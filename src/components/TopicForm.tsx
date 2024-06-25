@@ -4,6 +4,8 @@ import FooterButtons from "./FooterButtons";
 
 export interface Props {
   topicName: string;
+  btnType: string;
+
 }
   
 const TopicForm = (props: Props) => {

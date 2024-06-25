@@ -6,6 +6,7 @@ export interface Props {
   attachmentTitle : string;
   attachmentLink : string;
   attachmentDescription: string | null;
+  btnType: string;
 }
 
 const AttachmentForm = (props: Props) => {
@@ -60,7 +61,7 @@ const AttachmentForm = (props: Props) => {
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
       ></textarea>
 
-      <FooterButtons buttonType="create" />
+      <FooterButtons buttonType={props.btnType} />
     </form>
   );
 }

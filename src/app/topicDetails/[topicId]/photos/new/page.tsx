@@ -7,15 +7,16 @@ export const metadata: Metadata = {
   title: 'New photo',
 };
 
-export default async function NewTopicPage(){
+export default async function NewTopicPage({ params }: { params: { topicId: string } }){
   return (
     <main>
-      <BackButton back="/" />
+      <BackButton back={`/topicDetails/${params.topicId}/photos`}/>
       <h1 className="text-plum-300 ">Create Photo</h1>
       <PhotoForm 
         photoBlob=""
         photoTitle=""
         photoDescription=""
+        btnType="create"
       />
     </main>
   )

@@ -6,6 +6,8 @@ export interface Props {
   linkTitle: string;
   linkHyperlink: string;
   linkDescription: string | null;
+  btnType: string;
+
 }
 
 const LinkForm = (props: Props) => {
@@ -60,7 +62,7 @@ const LinkForm = (props: Props) => {
       ></textarea>
 
       {/* <input type="hidden" id="link_created_at" name="link_created_at" value={dateString}/> */}
-      <FooterButtons buttonType="create" />
+      <FooterButtons buttonType={props.btnType} />
     </form>
   );
 }

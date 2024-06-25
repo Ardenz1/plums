@@ -6,6 +6,8 @@ export interface Props {
   photoBlob: string;
   photoTitle: string;
   photoDescription: string;
+  btnType: string;
+
 }
 
 const PhotoForm = (props: Props) => {
@@ -60,7 +62,7 @@ const PhotoForm = (props: Props) => {
       ></textarea>
 
       {/* <input type="hidden" id="photoCreated" name="photoCreated" value={dateString}/> */}
-      <FooterButtons buttonType="create" />
+      <FooterButtons buttonType={props.btnType} />
     </form>
   );
 }

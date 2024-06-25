@@ -5,6 +5,8 @@ import FooterButtons from "./FooterButtons";
 export interface Props {
   noteTitle: string;
   noteDescription: string;
+  btnType: string;
+
 }
 
 const NoteForm = (props: Props) => {
@@ -42,8 +44,8 @@ const NoteForm = (props: Props) => {
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
       ></textarea>
 
-      <FooterButtons buttonType="create" />
-    </form>
+<FooterButtons buttonType={props.btnType} />
+</form>
   );
 }
 

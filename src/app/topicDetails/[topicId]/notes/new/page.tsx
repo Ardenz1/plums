@@ -8,15 +8,16 @@ export const metadata: Metadata = {
   title: 'New note',
 };
 
-export default async function NewNotePage() {
+export default async function NewNotePage({ params }: { params: { topicId: string } }) {
   return (
     <main>
-      <BackButton back="/topicDetails/notes" />
+      <BackButton back={`/topicDetails/${params.topicId}/notes`}/>
       <h1 className="text-plum-300 ">Create Note</h1>
       <NoteForm 
         // note_id={-1}
         noteTitle="" 
         noteDescription="" 
+        btnType="create"
       />
     </main>
   )
