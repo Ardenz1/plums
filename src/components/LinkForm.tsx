@@ -3,6 +3,7 @@ import { useState } from 'react';
 import FooterButtons from "./FooterButtons";
 
 export interface Props {
+  linkId?: string;
   linkTitle: string;
   linkHyperlink: string;
   linkDescription: string | null;
@@ -26,6 +27,7 @@ const LinkForm = (props: Props) => {
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setLinkDescription(e.target.value);
   };
+
 
   return (
     <form>

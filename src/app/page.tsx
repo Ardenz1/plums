@@ -12,24 +12,35 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   let topicList: Topic[] = await getAllTopics();
-  
+
+  const topicsWithSubtopics = new Set<number>();
+  topicList.forEach(topic => {
+    if (topic.parent_id !== null) {
+      topicsWithSubtopics.add(topic.parent_id);
+    }
+  });
+
   const renderTopics = (topics: Topic[], parentId: number | null = null, level: number = 0) => {
     return topics
       .filter(topic => topic.parent_id === parentId)
       .map(topic => {
+        const hasSubtopics = topicsWithSubtopics.has(topic.topic_id);
+
         return (
-          <div key={topic.topic_id} style={{ marginLeft: `${level * 20}px` }}>
+          <div key={topic.topic_id} className={`topic-container ${parentId !== null ? `subtopic subtopic-${parentId}` : ''}`} style={{ marginLeft: `${level * 20}px` }}>
             {parentId === null ? (
               <TopicCard 
                 topicId={topic.topic_id}
                 topicName={topic.topic_name}
                 parentId={topic.parent_id}
+                hasSubTopics={hasSubtopics}  
               />
             ) : (
               <SubTopicCard
                 topicId={topic.topic_id}
                 topicName={topic.topic_name}
                 parentId={topic.parent_id}
+                hasSubTopics={hasSubtopics}
               />
             )}
             {renderTopics(topics, topic.topic_id, level + 1)}
@@ -37,11 +48,11 @@ export default async function Home() {
         );
       });
   };
+
   return (
     <main>
       <h1>Topics</h1>
       {renderTopics(topicList)}
-
     </main>
   );
 }

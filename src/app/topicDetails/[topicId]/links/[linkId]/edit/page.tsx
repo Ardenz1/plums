@@ -4,7 +4,7 @@ import BackButton from "@/components/BackButton"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: 'New Attachment',
+  title: 'Edit Link',
 };
 
 export default async function EditLinkPage({ params }: { params: { topicId: string, linkId: string } }){
@@ -16,7 +16,7 @@ export default async function EditLinkPage({ params }: { params: { topicId: stri
         linkTitle="cool link title"
         linkHyperlink=""
         linkDescription=""
-        btnType="delete"
+        btnType="edit"
       />
     </main>
   )

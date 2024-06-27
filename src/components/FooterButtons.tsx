@@ -20,7 +20,10 @@ const FooterButtons = (props: Props) =>  {
   } else if (props.buttonType === "save") {
     buttonOneText = "Cancel";
     buttonTwoText = "Save";
-  }
+  } else if (props.buttonType === "edit") {
+  buttonOneText = "Save";
+  buttonTwoText = "Delete";
+}
   
   return (
     <div className=" bg-white sticky bottom-0 mt-auto flex justify-center items-center space-x-2">

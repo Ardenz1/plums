@@ -4,7 +4,7 @@ import BackButton from "@/components/BackButton"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: 'New Attachment',
+  title: 'Edit Attachment',
 };
 
 export default async function EditAttachmentPage({ params }: { params: { topicId: string, attachmentId: string } }){
