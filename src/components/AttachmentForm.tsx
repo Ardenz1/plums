@@ -1,12 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FooterButtons from "./FooterButtons";
+
+import { addAttachment } from '@/database/database';
 
 export interface Props {
   attachmentTitle : string;
   attachmentLink : string;
   attachmentDescription: string | null;
-  btnType: string;
 }
 
 const AttachmentForm = (props: Props) => {
@@ -27,7 +28,7 @@ const AttachmentForm = (props: Props) => {
   };
 
   return (
-    <form>
+    <form id="attachment-form">
       {/* title */}
       <label htmlFor="attachment_title" className="block text-sm font-medium text-plum-300">Attachment title</label>
       <input
@@ -61,7 +62,7 @@ const AttachmentForm = (props: Props) => {
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
       ></textarea>
 
-      <FooterButtons buttonType={props.btnType} />
+      <FooterButtons buttonType="create" />
     </form>
   );
 }
