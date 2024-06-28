@@ -20,7 +20,7 @@ export default async function SingleLink({ params }: { params: { topicId: string
         <h1>Link</h1>
         <p>No link found with the given ID 😞</p>
       </main>
-    );
+    )
   }
   return (
     <main>
@@ -39,7 +39,7 @@ export default async function SingleLink({ params }: { params: { topicId: string
       {/* <LinkCardSingle title="Link 1" link_created_at="April 1, 2024" link="https://www.google.com" description="this is a link description!!!"/>
       <FooterButtons buttonType="delete"/> */}
     </main>
-  );
+  )
 }
 
 

@@ -8,6 +8,7 @@ export interface Props {
   attachmentTitle : string;
   attachmentLink : string;
   attachmentDescription: string | null;
+  btnType: string;
 }
 
 const AttachmentForm = (props: Props) => {

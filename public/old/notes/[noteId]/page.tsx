@@ -21,7 +21,7 @@ export default async function Notes({ params }: { params: { topicId: string, not
         <h1>Note</h1>
         <p>No note found with the given ID 😞</p>
       </main>
-    );
+    )
   }
   return (
     <main>
@@ -35,7 +35,7 @@ export default async function Notes({ params }: { params: { topicId: string, not
       />
       <FooterButtons buttonType="delete" />
     </main>
-  );
+  )
 }
 
 

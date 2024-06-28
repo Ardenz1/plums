@@ -21,7 +21,7 @@ export default async function PhotoSingle({ params }: { params: { topicId: strin
         <h1>Photo</h1>
         <p>No photo found with the given ID 😞</p>
       </main>
-    );
+    )
   }
   return (
     <main>
@@ -36,7 +36,7 @@ export default async function PhotoSingle({ params }: { params: { topicId: strin
       />
       <FooterButtons buttonType="delete" />
     </main>
-  );
+  )
 }
 
 

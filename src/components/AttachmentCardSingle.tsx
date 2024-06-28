@@ -7,7 +7,7 @@ export interface Props {
   attachmentCreated: Date;
 }
 
-const AttachmentCard = (props: Props) => {
+const AttachmentCardSingle = (props: Props) => {
   let date: string[] = String(props.attachmentCreated).split(' ');
   let dateString: string = `${date[1]} ${date[2]}, ${date[3]}`;
 
@@ -43,4 +43,4 @@ const AttachmentCard = (props: Props) => {
   )
 }
 
-export default AttachmentCard;
+export default AttachmentCardSingle;

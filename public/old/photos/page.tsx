@@ -43,11 +43,11 @@ export default async function Photos({ params }: { params: { topicId: string } }
         }
       </main>
     )
+    // sample photo cards
+    // <PhotoCard photoTitle="New Photo" photoDescription="This is a new photo and an example photo card" photoBlob="/pic1.jpg" photoCreated={date} />
+    // <PhotoCard photoTitle="Newer Photo" photoDescription="This is a new photo and another example photo card" photoBlob="/pic2.jpg" photoCreated={date} />
   }      
 }
-// sample photo cards
-// <PhotoCard photoTitle="New Photo" photoDescription="This is a new photo and an example photo card" photoBlob="/pic1.jpg" photoCreated={date} />
-// <PhotoCard photoTitle="Newer Photo" photoDescription="This is a new photo and another example photo card" photoBlob="/pic2.jpg" photoCreated={date} />
 
 // Blobs????
 // let img = new Image()

@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default async function AttachmentSingle({ params }: { params: { topicId: string, attachmentId: string } }) {
   const attachment = await getAttachmentById(parseInt(params.attachmentId));
 
-
   if (!attachment) {
     return (
       <main>
@@ -22,21 +21,22 @@ export default async function AttachmentSingle({ params }: { params: { topicId: 
         <p>No attachment found with the given ID 😞</p>
       </main>
     )
+  } else {
+    return (
+      <main>
+        <BackButton back={`/topicDetails/${params.topicId}/attachments`} />
+        <h1>Attachment</h1>
+        <AttachmentCardSingle
+          key={attachment.attachment_id}
+          attachment="file.docx"
+          attachmentTitle={attachment.attachment_header}
+          attachmentCreated={attachment.attachment_created_at}
+          attachmentDescription={attachment.attachment_description!}
+        />
+        <FooterButtons buttonType="delete" />
+      </main>
+    )
   }
-  return (
-    <main>
-      <BackButton back={`/topicDetails/${params.topicId}/attachments`} />
-      <h1>Attachment</h1>
-      <AttachmentCardSingle
-        key={attachment.attachment_id}
-        attachment="file.docx"
-        attachmentTitle={attachment.attachment_header}
-        attachmentCreated={attachment.attachment_created_at}
-        attachmentDescription={attachment.attachment_description!}
-      />
-      <FooterButtons buttonType="delete" />
-    </main>
-  )
 }
 
 

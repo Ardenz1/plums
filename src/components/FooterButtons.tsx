@@ -6,6 +6,7 @@ export interface Props {
 // create
 // delete
 // save
+// edit
 
 const FooterButtons = (props: Props) =>  {
   let buttonOneText: string = "";
@@ -17,13 +18,13 @@ const FooterButtons = (props: Props) =>  {
   } else if (props.buttonType === "delete") {
     buttonOneText = "Edit";
     buttonTwoText = "Delete";
-  } else if (props.buttonType === "save") {
+  } else if (props.buttonType === "save" || props.buttonType === "edit") {
     buttonOneText = "Cancel";
     buttonTwoText = "Save";
-  } else if (props.buttonType === "edit") {
-  buttonOneText = "Save";
-  buttonTwoText = "Delete";
-}
+  } else {
+    buttonOneText = "";
+    buttonTwoText = "";
+  }
   
   return (
     <div className=" bg-white sticky bottom-0 mt-auto flex justify-center items-center space-x-2">
