@@ -18,7 +18,6 @@ export default async function DetailPages({ params }: { params: { topicId: strin
   if (params.detail === "attachments") {
     metadata.title = "Edit Attachment";
     const attachment = await getAttachmentById(parseInt(params.detailId));
-
     
     return (
       <main>
@@ -30,6 +29,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           attachmentLink={attachment.attachment_link}
           attachmentDescription={attachment.attachment_description}
           btnType="edit"
+          btnPath={`/topicDetails/${params.topicId}/attachments/${params.detailId}/`}
         />
       </main>
     )
@@ -47,6 +47,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           linkHyperlink={link.link_hyperlink}
           linkDescription={link.link_description!}
           btnType="edit"
+          btnPath={`/topicDetails/${params.topicId}/links/${params.detailId}/`}
         />
       </main>
     )
@@ -62,6 +63,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           noteTitle={note.note_header}
           noteDescription={note.note_description!}
           btnType="save"
+          btnPath={`/topicDetails/${params.topicId}/notes/${params.detailId}/`}
         />
       </main>
     )
@@ -79,6 +81,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           photoBlob={photo.photo_image}
           photoDescription={photo.photo_description}
           btnType="save"
+          btnPath={`/topicDetails/${params.topicId}/photos/${params.detailId}/`}
         />
       </main>
     )
