@@ -5,6 +5,8 @@ import LinkForm from "@/components/LinkForm";
 import NoteForm from "@/components/NoteForm";
 import PhotoForm from "@/components/PhotoForm";
 
+import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
+
 import BackButton from "@/components/BackButton";
 
 // import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
@@ -15,59 +17,67 @@ export const metadata: Metadata = {};
 export default async function DetailPages({ params }: { params: { topicId: string, detail: string, detailId: string } }) {
   if (params.detail === "attachments") {
     metadata.title = "Edit Attachment";
+    const attachment = await getAttachmentById(parseInt(params.detailId));
+
     
     return (
       <main>
         <BackButton back={`/topicDetails/${params.topicId}/attachments/${params.detailId}/`}/>
         <h1 className="text-plum-300 ">Edit Attachment</h1>
         <AttachmentForm 
-          attachmentTitle="123"
-          attachmentLink=""
-          attachmentDescription=""
-          btnType="save"
+          attachmentId = {params.detailId}
+          attachmentTitle={attachment.attachment_header}
+          attachmentLink={attachment.attachment_link}
+          attachmentDescription={attachment.attachment_description}
+          btnType="edit"
         />
       </main>
     )
   } else if (params.detail === "links") {
     metadata.title = "Edit Link";
+    const link = await getLinkById(parseInt(params.detailId));
 
     return (
       <main>
         <BackButton back={`/topicDetails/${params.topicId}/links/${params.detailId}`}/>
         <h1 className="text-plum-300 ">Edit Link</h1>
         <LinkForm 
-          linkTitle="cool link title"
-          linkHyperlink=""
-          linkDescription=""
+          linkId = {params.detailId}
+          linkTitle={link.link_header}
+          linkHyperlink={link.link_hyperlink}
+          linkDescription={link.link_description!}
           btnType="edit"
         />
       </main>
     )
   } else if (params.detail === "notes") {
     metadata.title = "Edit Note";
-
+    const note = await getNoteById(parseInt(params.detailId));
     return (
       <main>
         <BackButton back={`/topicDetails/${params.topicId}/notes/${params.detailId}`}/>
         <h1 className="text-plum-300 ">Edit Note</h1>
         <NoteForm 
-          noteTitle="cool note title"
-          noteDescription=""
+          noteId = {params.detailId}
+          noteTitle={note.note_header}
+          noteDescription={note.note_description!}
           btnType="save"
         />
       </main>
     )
   } else if (params.detail === "photos") {
     metadata.title = "Edit Photo";
+    const photo = await getPhotoById(parseInt(params.detailId));
 
     return (
       <main>
         <BackButton back={`/topicDetails/${params.topicId}/photos/${params.detailId}`}/>
         <h1 className="text-plum-300 ">Edit Photo</h1>
         <PhotoForm 
-          photoTitle="cool photo title"
-          photoBlob=""
-          photoDescription=""
+          photoId = {params.detailId}
+          photoTitle={photo.photo_header}
+          photoBlob={photo.photo_image}
+          photoDescription={photo.photo_description}
           btnType="save"
         />
       </main>
