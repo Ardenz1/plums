@@ -38,7 +38,7 @@ export default async function SingleView({ params }: { params: { topicId: string
             attachmentCreated={attachment.attachment_created_at}
             attachmentDescription={attachment.attachment_description!}
           />
-          <FooterButtons buttonType="delete" />
+          <FooterButtons buttonPath={`/topicDetails/${params.topicId}/attachments/${params.detailId}/edit`} buttonType="delete" />
         </main>
       )
     }
@@ -67,7 +67,7 @@ export default async function SingleView({ params }: { params: { topicId: string
           link_created_at={link.link_created_at}
           link_description={link.link_description!}
         />
-        <FooterButtons buttonType="delete"/>
+        <FooterButtons buttonPath={`/topicDetails/${params.topicId}/links/${params.detailId}/edit`} buttonType="delete"/>
 
         {/* <LinkCardSingle title="Link 1" link_created_at="April 1, 2024" link="https://www.google.com" description="this is a link description!!!"/>
         <FooterButtons buttonType="delete"/> */}
@@ -96,7 +96,7 @@ export default async function SingleView({ params }: { params: { topicId: string
           note_created_at={note.note_created_at}
           note_description={note.note_description!}
         />
-        <FooterButtons buttonType="delete" />
+        <FooterButtons buttonPath={`/topicDetails/${params.topicId}/notes/${params.detailId}/edit`} buttonType="delete" />
       </main>
     )
   } else if (params.detail === "photos") {
@@ -124,7 +124,7 @@ export default async function SingleView({ params }: { params: { topicId: string
           photoCreated={photo.photo_created_at}
           photoDescription={photo.photo_description!}
         />
-        <FooterButtons buttonType="delete" />
+        <FooterButtons buttonPath={`/topicDetails/${params.topicId}/photos/${params.detailId}/edit`} buttonType="delete" />
       </main>
     )
   } else {

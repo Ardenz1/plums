@@ -73,7 +73,6 @@ const NoteForm = (props: Props) => {
 
       <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />
       {error && <p className="text-red-500 mt-2">{error}</p>}
-      {/* <button type="submit">test</button> */}
     </form>
   );
 };
