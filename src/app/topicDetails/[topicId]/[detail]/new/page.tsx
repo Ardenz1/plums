@@ -20,10 +20,12 @@ export default async function DetailPages({ params }: { params: { topicId: strin
         <BackButton back={`/topicDetails/${params.topicId}/attachments`}/>
         <h1 className="text-plum-300 ">Create Attachment</h1>
         <AttachmentForm 
+          attachmentId=""
           attachmentTitle="123"
           attachmentLink=""
           attachmentDescription=""
           btnType="create"
+          btnPath={`/topicDetails/${params.topicId}/attachments`}
         />
       </main>
     )
@@ -39,6 +41,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           linkHyperlink=""
           linkDescription=""
           btnType="create"
+          btnPath={`/topicDetails/${params.topicId}/links`}
         />
       </main>
     )
@@ -50,10 +53,11 @@ export default async function DetailPages({ params }: { params: { topicId: strin
         <BackButton back={`/topicDetails/${params.topicId}/notes`}/>
         <h1 className="text-plum-300 ">Create Note</h1>
         <NoteForm 
-          // note_id={-1}
+          noteId=""
           noteTitle="" 
           noteDescription="" 
           btnType="create"
+          btnPath={`/topicDetails/${params.topicId}/notes`}
         />
       </main>
     )
@@ -65,10 +69,12 @@ export default async function DetailPages({ params }: { params: { topicId: strin
         <BackButton back={`/topicDetails/${params.topicId}/photos`}/>
         <h1 className="text-plum-300 ">Create Photo</h1>
         <PhotoForm 
+          photoId=""
           photoBlob=""
           photoTitle=""
           photoDescription=""
           btnType="create"
+          btnPath={`/topicDetails/${params.topicId}/photos`}
         />
       </main>
     )

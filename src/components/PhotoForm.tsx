@@ -8,7 +8,7 @@ export interface Props {
   photoTitle: string;
   photoDescription: string;
   btnType: string;
-
+  btnPath: string;
 }
 
 const PhotoForm = (props: Props) => {
@@ -94,7 +94,7 @@ const PhotoForm = (props: Props) => {
       ></textarea>
 
       {/* <input type="hidden" id="photoCreated" name="photoCreated" value={dateString}/> */}
-      <FooterButtons buttonType={props.btnType} />
+      <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />
       {error && <p className="text-red-500 mt-2">{error}</p>}
 
     </form>

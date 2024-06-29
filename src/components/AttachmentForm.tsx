@@ -8,6 +8,7 @@ export interface Props {
   attachmentLink: string; // This can be removed since we're handling it in state
   attachmentDescription: string | null;
   btnType: string;
+  btnPath: string;
 }
 
 const AttachmentForm = (props: Props) => {
@@ -110,7 +111,7 @@ const AttachmentForm = (props: Props) => {
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
       ></textarea>
 
-      <FooterButtons buttonType={props.btnType} />
+      <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />
       {error && <p className="text-red-500 mt-2">{error}</p>}
     </form>
   );

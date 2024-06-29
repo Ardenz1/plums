@@ -3,22 +3,17 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-// export interface Props {
-//   hasPlus: boolean;
-//   page: string; 
-// }
-
 const Header = () => {
   // console.log(props.hasPlus)
-  const pathname = usePathname();
-  let chunks = pathname.split('/');
-  let path = chunks[chunks.length - 1];
+  const pathName = usePathname();
+  let chunks = pathName.split('/');
+  let pathEnd = chunks[chunks.length - 1];
   const hasPlus = 
-  pathname === '/' ||
-  path === 'attachments' ||
-  path === 'notes' || 
-  path === 'links' ||
-  path === 'photos'
+  pathName === '/' ||
+  pathEnd === 'attachments' ||
+  pathEnd === 'notes' || 
+  pathEnd === 'links' ||
+  pathEnd === 'photos'
   ? true : false;
 
   if (hasPlus == true) {
@@ -34,7 +29,9 @@ const Header = () => {
           />
           <p className="text-white text-xl">PLUMS</p>
         </a>
-        <i className="fa-solid fa-plus p-2 mx-5 bg-leaf-100 rounded-xl text-lg"></i>
+        <a href={pathName == "/" ? "/new" : `${pathName}/new`}>
+          <i className="fa-solid fa-plus p-2 mx-5 bg-leaf-100 rounded-xl text-lg"></i>
+        </a>
       </div>
      
     )

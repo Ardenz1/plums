@@ -8,7 +8,7 @@ export interface Props {
   linkHyperlink: string;
   linkDescription: string | null;
   btnType: string;
-
+  btnPath: string;
 }
 
 const LinkForm = (props: Props) => {
@@ -91,7 +91,7 @@ const LinkForm = (props: Props) => {
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
       ></textarea>
 
-      <FooterButtons buttonType={props.btnType} />
+      <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />
       {error && <p className="text-red-500 mt-2">{error}</p>}
 
     </form>

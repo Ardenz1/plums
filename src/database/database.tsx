@@ -66,6 +66,14 @@ export async function getAllTopics() {
   return topics;
 }
 
+// GET topic by id
+export async function getTopicById(topic_id: number) {
+  const topic = await prisma.topic.findUnique({
+    where: { topic_id: topic_id }
+  });
+  return topic;
+}
+
 // GET topic details by topic id 
 export async function getTopicDetails(topic_detail_id: number) {
   const topicDetails = await prisma.topic_Detail.findUnique({
