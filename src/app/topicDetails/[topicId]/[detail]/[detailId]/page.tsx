@@ -33,7 +33,7 @@ export default async function SingleView({ params }: { params: { topicId: string
           <h1>Attachment</h1>
           <AttachmentCardSingle
             key={attachment.attachment_id}
-            attachment="file.docx"
+            attachment={attachment?.attachment_link || 'file.docx'}
             attachmentTitle={attachment.attachment_header}
             attachmentCreated={attachment.attachment_created_at}
             attachmentDescription={attachment.attachment_description!}
@@ -118,8 +118,8 @@ export default async function SingleView({ params }: { params: { topicId: string
         <h1>Photo</h1>
         <PhotoCardSingle
           key={photo.photo_id}
-          // photoBlob={photo.photo_image}
           photoBlob=""
+          // photoBlob={photo.photo_image}
           photoTitle={photo.photo_header}
           photoCreated={photo.photo_created_at}
           photoDescription={photo.photo_description!}

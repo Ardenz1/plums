@@ -60,7 +60,7 @@ model Photo {
   photo_id          Int          @id @default(autoincrement())
   photo_header      String
   photo_description String?
-  photo_image       Bytes
+  photo_image       Bytes?
   photo_created_at  DateTime     @default(now())
   photo_updated_at  DateTime     @updatedAt
   topic_detail_id   Int
@@ -71,7 +71,7 @@ model Attachment {
   attachment_id          Int          @id @default(autoincrement())
   attachment_header      String
   attachment_description String?
-  attachment_link        Bytes
+  attachment_link        String?
   attachment_created_at  DateTime     @default(now())
   attachment_updated_at  DateTime     @updatedAt
   topic_detail_id        Int
