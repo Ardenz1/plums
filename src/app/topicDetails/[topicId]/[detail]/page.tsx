@@ -37,7 +37,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
                   key={attachment.attachment_id}
                   // need new attribute for attachment_link
                   // and maybe update column_name from attachment_link to attachment_???
-                  attachment="file.docx"
+                  attachment={attachment?.attachment_link || 'file.docx'}
                   attachmentTitle={attachment.attachment_header}
                   attachmentCreated={attachment.attachment_created_at} 
                   attachmentDescription={attachment.attachment_description} 
@@ -151,7 +151,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
                   key={photo.photo_id}
                   // CANT FIGURE OUT BLOBSSS
                   // photoLink={photo.photo_path}
-                  photoBlob={"/pic1.jpg"}
+                  photoLink={photo.photo_path}
                   photoTitle={photo.photo_header} 
                   photoCreated={photo.photo_created_at}
                   photoDescription={photo.photo_description}
@@ -162,9 +162,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           }
         </main>
       )
-      // sample photo cards
-      // <PhotoCard photoTitle="New Photo" photoDescription="This is a new photo and an example photo card" photoBlob="/pic1.jpg" photoCreated={date} />
-      // <PhotoCard photoTitle="Newer Photo" photoDescription="This is a new photo and another example photo card" photoBlob="/pic2.jpg" photoCreated={date} />
+      
     }
   } else {
     return (

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export interface Props {
-  photoBlob: string;
+  photoLink: string;
   photoTitle: string;
   photoCreated: Date;
   photoDescription: string | null;
@@ -19,7 +19,7 @@ const PhotoCard = (props: Props) => {
     <div className="bg-plum-100 p-5 rounded-2xl mb-2">
       {/* right now, for testing, the photoBlob attribute takes a route, and not a blob */}
       <Image
-        src={props.photoBlob}
+        src={props.photoLink}
         alt={props.photoTitle}
         width="0"
         height="0"

@@ -118,8 +118,7 @@ export default async function SingleView({ params }: { params: { topicId: string
         <h1>Photo</h1>
         <PhotoCardSingle
           key={photo.photo_id}
-          photoBlob=""
-          // photoLink={photo.photo_path}
+          photoLink={photo.photo_path}
           photoTitle={photo.photo_header}
           photoCreated={photo.photo_created_at}
           photoDescription={photo.photo_description!}
