@@ -1,5 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
 import FooterButtons from "./FooterButtons";
 
 export interface Props {
@@ -12,60 +14,66 @@ export interface Props {
 }
 
 const AttachmentForm = (props: Props) => {
+  let router = useRouter();
+  let path = usePathname();
+  let redirectUrl = path.split('/').slice(0, -1).join('/');
+  
   const [attachmentTitle, setAttachmentTitle] = useState(props.attachmentTitle);
   const [attachmentFile, setAttachmentFile] = useState<File | null>(null);
   const [attachmentDescription, setAttachmentDescription] = useState(props.attachmentDescription || "");
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>(props.attachmentLink);
-
+  
   useEffect(() => {
     setAttachmentTitle(props.attachmentTitle);
     setAttachmentDescription(props.attachmentDescription || "");
     setFileName(props.attachmentLink);
   }, [props.attachmentTitle, props.attachmentDescription, props.attachmentLink]);
-
+  
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAttachmentTitle(e.target.value);
   };
-
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setAttachmentFile(file);
     setFileName(file ? file.name : '');
   };
-
+  
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setAttachmentDescription(e.target.value);
   };
-
+  
   const handleFileInputClick = () => {
     document.getElementById('actual_file_input')?.click();
   };
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+    
     const formData = new FormData();
     formData.append("title", attachmentTitle);
     formData.append("description", attachmentDescription);
     if (attachmentFile) {
       formData.append("file", attachmentFile);
     }
-
+    
     try {
       const response = await fetch(`/api/attachments/edit/${props.attachmentId}`, {
         method: 'PUT',
         body: formData,
       });
-
+      
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to update the attachment');
       }
-
+      
       const updatedAttachment = await response.json();
       console.log('Attachment updated:', updatedAttachment);
+      
+      router.push(`${redirectUrl}`);
     } catch (error: any) {
       setError(error.message);
     }

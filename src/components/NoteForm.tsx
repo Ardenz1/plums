@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
 import FooterButtons from './FooterButtons';
 
 interface Props {
@@ -11,22 +13,26 @@ interface Props {
 }
 
 const NoteForm = (props: Props) => {
+  let router = useRouter();
+  let path = usePathname();
+  let redirectUrl = path.split('/').slice(0, -1).join('/');
+  
   const [noteTitle, setNoteTitle] = useState(props.noteTitle);
   const [noteDescription, setNoteDescription] = useState(props.noteDescription || '');
   const [error, setError] = useState<string | null>(null);
-
+  
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoteTitle(e.target.value);
   };
-
+  
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNoteDescription(e.target.value);
   };
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+    
     try {
       const response = await fetch(`/api/notes/edit/${props.noteId}`, {
         method: 'PUT',
@@ -38,18 +44,20 @@ const NoteForm = (props: Props) => {
           description: noteDescription,
         }),
       });
-
+      
       if (!response.ok) {
         throw new Error('Failed to update the note');
       }
-
+      
       const updatedNote = await response.json();
       console.log('Note updated:', updatedNote);
+      
+      router.push(`${redirectUrl}`);
     } catch (error: any) {
       setError(error.message);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="noteTitle" className="block text-sm font-medium text-plum-300">Note title</label>

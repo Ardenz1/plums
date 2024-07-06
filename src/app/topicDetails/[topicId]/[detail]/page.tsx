@@ -150,7 +150,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
                 <PhotoCard 
                   key={photo.photo_id}
                   // CANT FIGURE OUT BLOBSSS
-                  // photoBlob={photo.photo_image}
+                  // photoLink={photo.photo_path}
                   photoBlob={"/pic1.jpg"}
                   photoTitle={photo.photo_header} 
                   photoCreated={photo.photo_created_at}

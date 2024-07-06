@@ -13,26 +13,24 @@ model Topic {
   created_at    DateTime       @default(now())
   updated_at    DateTime       @updatedAt
   parent_id     Int?
+  is_deleted    Boolean        @default(false)
   topic_details Topic_Detail[]
+  Topic_Tag     Topic_Tag[]
 }
 
 model Topic_Detail {
-  topic_detail_id              Int      @id @default(autoincrement())
-  topic_detail_title           String
-  topic_detail_amount          Int
-  topic_detail_created_at      DateTime @default(now())
-  topic_detail_updated_at      DateTime @updatedAt
-
-  // Define the many-to-one relationship with Topic
-  topic           Topic    @relation(fields: [topic_id], references: [topic_id])
-  topic_id        Int
-
-  // Define the one-to-many relationships with Notes, Links, Photos, and Attachments
-  notes           Note[]
-  links           Link[]
-  photos          Photo[]
-  attachments     Attachment[]
-  
+  topic_detail_id         Int          @id @default(autoincrement())
+  topic_id                Int
+  topic_detail_amount     Int
+  topic_detail_created_at DateTime     @default(now())
+  topic_detail_title      String
+  topic_detail_updated_at DateTime     @updatedAt
+  is_deleted              Boolean      @default(false)
+  attachments             Attachment[]
+  links                   Link[]
+  notes                   Note[]
+  photos                  Photo[]
+  topic                   Topic        @relation(fields: [topic_id], references: [topic_id])
 }
 
 model Note {
@@ -41,6 +39,7 @@ model Note {
   note_description String?
   note_created_at  DateTime     @default(now())
   note_updated_at  DateTime     @updatedAt
+  is_deleted       Boolean      @default(false)
   topic_detail_id  Int
   topic_detail     Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
@@ -52,6 +51,7 @@ model Link {
   link_hyperlink   String
   link_created_at  DateTime     @default(now())
   link_updated_at  DateTime     @updatedAt
+  is_deleted       Boolean      @default(false)
   topic_detail_id  Int
   topic_detail     Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
@@ -60,9 +60,10 @@ model Photo {
   photo_id          Int          @id @default(autoincrement())
   photo_header      String
   photo_description String?
-  photo_image       Bytes?
+  photo_path        String
   photo_created_at  DateTime     @default(now())
   photo_updated_at  DateTime     @updatedAt
+  is_deleted        Boolean      @default(false)
   topic_detail_id   Int
   topic_detail      Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
 }
@@ -74,6 +75,22 @@ model Attachment {
   attachment_link        String?
   attachment_created_at  DateTime     @default(now())
   attachment_updated_at  DateTime     @updatedAt
+  is_deleted             Boolean      @default(false)
   topic_detail_id        Int
   topic_detail           Topic_Detail @relation(fields: [topic_detail_id], references: [topic_detail_id])
+}
+
+model Tag {
+  tag_id    Int         @id @default(autoincrement())
+  tag       String
+  Topic_Tag Topic_Tag[]
+}
+
+model Topic_Tag {
+  topic_id Int
+  tag_id   Int
+  topic    Topic @relation(fields: [topic_id], references: [topic_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_topic")
+  tag      Tag   @relation(fields: [tag_id], references: [tag_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tag")
+
+  @@id([topic_id, tag_id])
 }

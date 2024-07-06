@@ -7,8 +7,8 @@ export async function PUT(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const linkId = path.split('/').pop();
 
-  console.log('Full path:', path);
-  console.log('Extracted linkId:', linkId);
+  // console.log('Full path:', path);
+  // console.log('Extracted linkId:', linkId);
 
   if (!linkId) {
     return NextResponse.json({ message: 'Note ID parameter is missing' }, { status: 400 });

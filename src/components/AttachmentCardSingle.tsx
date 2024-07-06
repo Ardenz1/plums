@@ -1,19 +1,19 @@
 import CopyBtn from "./CopyBtn";
-
+ 
 export interface Props {
   attachment: string;
   attachmentTitle: string;
   attachmentDescription: string;
   attachmentCreated: Date;
 }
-
+ 
 const AttachmentCardSingle = (props: Props) => {
   let date: string[] = String(props.attachmentCreated).split(' ');
   let dateString: string = `${date[1]} ${date[2]}, ${date[3]}`;
-
+ 
   let fileType: string = String(props.attachment.split('.')[1]).toLowerCase();
   let fileIcon: string;
-  
+ 
   if (fileType == 'doc' || fileType == 'docx') {
     fileIcon = 'fa-solid fa-file-word'
   } else if (fileType == 'pdf') {
@@ -37,10 +37,10 @@ const AttachmentCardSingle = (props: Props) => {
       <p className="font-thin text-xs mb-3">{dateString}</p>
       <p className="text-sm">{props.attachmentDescription}</p>
       {/* <CopyBtn description={props.attachmentDescription}/> */}
-
+ 
     </div>
-    
+   
   )
 }
-
+ 
 export default AttachmentCardSingle;

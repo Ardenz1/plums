@@ -5,7 +5,6 @@ import FooterButtons from "./FooterButtons";
 export interface Props {
   topicName: string;
   btnType: string;
-
 }
   
 const TopicForm = (props: Props) => {
@@ -40,7 +39,7 @@ const TopicForm = (props: Props) => {
           })
         }
       </select>
-      <FooterButtons buttonType="create"/>
+      <FooterButtons buttonType="create" buttonPath="/"/>
     </form>
   )
 }

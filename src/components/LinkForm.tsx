@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
 import FooterButtons from "./FooterButtons";
 
 export interface Props {
@@ -12,6 +14,10 @@ export interface Props {
 }
 
 const LinkForm = (props: Props) => {
+  let router = useRouter();
+  let path = usePathname();
+  let redirectUrl = path.split('/').slice(0, -1).join('/');
+
   const [linkTitle, setLinkTitle] = useState(props.linkTitle);
   const [linkHyperlink, setLinkHyperlink] = useState(props.linkHyperlink);
   const [linkDescription, setLinkDescription] = useState(props.linkDescription || "");
@@ -32,10 +38,11 @@ const LinkForm = (props: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+    
     try {
       const response = await fetch(`/api/links/edit/${props.linkId}`, {
         method: 'PUT',
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -45,13 +52,15 @@ const LinkForm = (props: Props) => {
           hyperlink: linkHyperlink,
         }),
       });
+      console.log("helloo", response)
 
       if (!response.ok) {
         throw new Error('Failed to update the note');
       }
-
       const updatedNote = await response.json();
       console.log('Note updated:', updatedNote);
+
+      router.push(`${redirectUrl}`);
     } catch (error: any) {
       setError(error.message);
     }

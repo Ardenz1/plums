@@ -78,7 +78,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
         <PhotoForm 
           photoId = {params.detailId}
           photoTitle={photo.photo_header}
-          photoBlob={photo.photo_image}
+          photoLink={photo.photo_path}
           // photoBlob = "/pic1.jpg"
           photoDescription={photo.photo_description}
           btnType="save"

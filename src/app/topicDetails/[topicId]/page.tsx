@@ -21,7 +21,7 @@ export default async function TopicDetailsPage({ params }: { params: { topicId: 
       <BackButton back="/" />
       <h1>{topic.topic_name}</h1>
       {/* ^^ this needs to get the name from the database call of the topic */}
-      <TopicDetails topicId={parseInt(params.topicId)} />
+      <TopicDetails topicId={parseInt(params.topicId)} topicDetails={topicDetails} />
     </main>
   )
 }

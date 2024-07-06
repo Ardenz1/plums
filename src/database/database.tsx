@@ -46,12 +46,12 @@ export async function addNote(note_header: string, note_description: string, top
 }
 
 // POST photo
-export async function addPhoto(photo_header: string, photo_description: string, photo_image: string, topic_detail_id: number) {
+export async function addPhoto(photo_header: string, photo_description: string, photo_path: string, topic_detail_id: number) {
   const photo = await prisma.Photo.create({
     data: {
       photo_header: photo_header,
       photo_description: photo_description,
-      photo_blob: photo_image,
+      photo_photo: photo_path,
       topic_detail: {
         connect: { topic_detail_id: topic_detail_id }
       }

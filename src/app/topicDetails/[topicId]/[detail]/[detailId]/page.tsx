@@ -17,7 +17,7 @@ export default async function SingleView({ params }: { params: { topicId: string
   if (params.detail === "attachments") {
     metadata.title = "Attachment";
     const attachment: Attachment = await getAttachmentById(parseInt(params.detailId));
-
+ 
     if (!attachment) {
       return (
         <main>
@@ -119,7 +119,7 @@ export default async function SingleView({ params }: { params: { topicId: string
         <PhotoCardSingle
           key={photo.photo_id}
           photoBlob=""
-          // photoBlob={photo.photo_image}
+          // photoLink={photo.photo_path}
           photoTitle={photo.photo_header}
           photoCreated={photo.photo_created_at}
           photoDescription={photo.photo_description!}
