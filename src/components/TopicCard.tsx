@@ -29,20 +29,28 @@ const TopicCard = (props: Props) => {
 
   if (!props.hasSubTopics) {
     return (
-      <a href={`/topicDetails/${props.topicId}`}>
-        <div className="flex justify-between items-center bg-leaf-200 p-5 rounded-2xl mb-2">
-          <h2>{props.topicName}</h2>
-          <i className="fa-solid fa-caret-right"></i>
-        </div>
-      </a>
+        <a href={`/topicDetails/${props.topicId}`} className="block">
+          <div className="flex justify-between items-center bg-leaf-200 p-5 rounded-2xl mb-2">
+            <div className="flex items-center space-x-2 cursor-pointer">
+              <a href={`edit/${props.topicId}`} className="text-leaf-300">
+                <i className="fa-solid fa-pen"></i>
+              </a>
+              <h2 className="text-black">{props.topicName}</h2>
+            </div>
+            <i className="fa-solid fa-caret-right text-black"></i> {/* Caret icon */}
+          </div>
+        </a>
     );
   } else {
     return (
       <div className="flex items-center bg-leaf-200 p-5 rounded-2xl mb-2">
-        <a href={`/topicDetails/${props.topicId}`} className="flex-grow">
-          <div>
-            <h2>{props.topicName}</h2>
-          </div>
+            <a href={`/topicDetails/${props.topicId}`} className="flex-grow">
+            <div className="flex items-center space-x-2 cursor-pointer">
+                <a href={`edit/${props.topicId}`} className="text-leaf-300">
+                    <i className="fa-solid fa-pen"></i>
+                </a>
+              <h2 className="text-black">{props.topicName}</h2>
+            </div>
         </a>
         <button onClick={toggleSubTopics}>
           <span className="flex justify-center items-center w-6 h-6 bg-leaf-100 rounded-full">

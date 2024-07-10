@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-
 import FooterButtons from "./FooterButtons";
 
 export interface Props {
@@ -11,12 +10,13 @@ export interface Props {
   linkDescription: string | null;
   btnType: string;
   btnPath: string;
+  topicDetailId?: string; // Add topicDetailId for creating new links
 }
 
 const LinkForm = (props: Props) => {
-  let router = useRouter();
-  let path = usePathname();
-  let redirectUrl = path.split('/').slice(0, -1).join('/');
+  const router = useRouter();
+  const path = usePathname();
+  const redirectUrl = path.split('/').slice(0, -1).join('/');
 
   const [linkTitle, setLinkTitle] = useState(props.linkTitle);
   const [linkHyperlink, setLinkHyperlink] = useState(props.linkHyperlink);
@@ -38,27 +38,36 @@ const LinkForm = (props: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+
+    const isEdit = Boolean(props.linkId);
+    const url = isEdit ? `/api/links/edit/${props.linkId}` : `/api/links/create/${props.topicDetailId}`;
+    const method = isEdit ? 'PUT' : 'POST';
+
+    const body = JSON.stringify({
+      title: linkTitle,
+      hyperlink: linkHyperlink,
+      description: linkDescription,
+      ...(isEdit ? {} : { topicDetailId: props.topicDetailId }), 
+    });
+
+    console.log('Submitting request:', { url, method, body });
+
     try {
-      const response = await fetch(`/api/links/edit/${props.linkId}`, {
-        method: 'PUT',
-        cache: 'no-store',
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: linkTitle,
-          description: linkDescription,
-          hyperlink: linkHyperlink,
-        }),
+        body,
       });
-      console.log("helloo", response)
 
       if (!response.ok) {
-        throw new Error('Failed to update the note');
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
       }
-      const updatedNote = await response.json();
-      console.log('Note updated:', updatedNote);
+
+      const result = await response.json();
+      console.log(isEdit ? 'Link updated:' : 'Link created:', result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {
@@ -102,7 +111,6 @@ const LinkForm = (props: Props) => {
 
       <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />
       {error && <p className="text-red-500 mt-2">{error}</p>}
-
     </form>
   );
 }

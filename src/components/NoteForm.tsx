@@ -1,63 +1,73 @@
 'use client';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-
 import FooterButtons from './FooterButtons';
 
 interface Props {
-  noteId: string;
+  noteId?: string;
   noteTitle: string;
   noteDescription: string;
   btnType: string;
   btnPath: string;
+  topicDetailId?: string; // Add topicDetailId for creating new notes
 }
 
 const NoteForm = (props: Props) => {
-  let router = useRouter();
-  let path = usePathname();
-  let redirectUrl = path.split('/').slice(0, -1).join('/');
-  
+  const router = useRouter();
+  const path = usePathname();
+  const redirectUrl = path.split('/').slice(0, -1).join('/');
+
   const [noteTitle, setNoteTitle] = useState(props.noteTitle);
   const [noteDescription, setNoteDescription] = useState(props.noteDescription || '');
   const [error, setError] = useState<string | null>(null);
-  
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoteTitle(e.target.value);
   };
-  
+
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNoteDescription(e.target.value);
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+
+    const isEdit = Boolean(props.noteId);
+    const url = isEdit ? `/api/notes/edit/${props.noteId}` : `/api/notes/create/${props.topicDetailId}`;
+    ;
+    const method = isEdit ? 'PUT' : 'POST';
+
+    const body = JSON.stringify({
+      title: noteTitle,
+      description: noteDescription,
+      ...(isEdit ? {} : { topicDetailId: props.topicDetailId }), // Include topicDetailId only for creating new notes
+    });
+
+
     try {
-      const response = await fetch(`/api/notes/edit/${props.noteId}`, {
-        method: 'PUT',
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: noteTitle,
-          description: noteDescription,
-        }),
+        body,
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to update the note');
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
       }
-      
-      const updatedNote = await response.json();
-      console.log('Note updated:', updatedNote);
-      
+
+      const result = await response.json();
+      // console.log(isEdit ? 'Note updated:' : 'Note created:', result);
+
       router.push(`${redirectUrl}`);
     } catch (error: any) {
       setError(error.message);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="noteTitle" className="block text-sm font-medium text-plum-300">Note title</label>

@@ -3,30 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import FooterButtons from './FooterButtons';
 
-interface Props {
-  photoId: string;
+export interface Props {
+  photoId?: string; // Include photoId for editing existing photos
   photoTitle: string;
   photoDescription: string;
-  photoLink: string | null;
+  photoLink: string;
   btnType: string;
   btnPath: string;
+  topicDetailId?: string; // Add topicDetailId for creating new photos
 }
 
 const PhotoForm = (props: Props) => {
   const router = useRouter();
   const path = usePathname();
   const redirectUrl = path.split('/').slice(0, -1).join('/');
-  
+
   const [photoTitle, setPhotoTitle] = useState(props.photoTitle);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoDescription, setPhotoDescription] = useState(props.photoDescription || '');
   const [error, setError] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>(props.photoLink || "");
+  const [fileName, setFileName] = useState<string>(props.photoLink || '');
 
   useEffect(() => {
     setPhotoTitle(props.photoTitle);
-    setPhotoDescription(props.photoDescription || "");
-    setFileName(props.photoLink || "");
+    setPhotoDescription(props.photoDescription || '');
+    setFileName(props.photoLink || '');
   }, [props.photoTitle, props.photoDescription, props.photoLink]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,20 +58,27 @@ const PhotoForm = (props: Props) => {
     if (photoFile) {
       formData.append('photo', photoFile);
     }
+    if (props.topicDetailId) {
+      formData.append('topicDetailId', props.topicDetailId);
+    }
+
+    const isEdit = Boolean(props.photoId);
+    const url = isEdit ? `/api/photos/edit/${props.photoId}` : `/api/photos/create/${props.topicDetailId}`;
+    const method = isEdit ? 'PUT' : 'POST';
 
     try {
-      const response = await fetch(`/api/photos/edit/${props.photoId}`, {
-        method: 'PUT',
+      const response = await fetch(url, {
+        method,
         body: formData,
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to update the photo');
+        throw new Error(errorData.message || 'Failed to process the photo');
       }
 
-      const updatedPhoto = await response.json();
-      console.log('Photo updated:', updatedPhoto);
+      const result = await response.json();
+      console.log(isEdit ? 'Photo updated:' : 'Photo created:', result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {
