@@ -12,12 +12,13 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    const { title, } = await req.json();
+    const { title, subTopicId } = await req.json();
 
     const updatedTopic = await prisma.topic.update({
       where: { topic_id: Number(topicId) },
       data: {
         topic_name: title,
+        parent_id: subTopicId ? Number(subTopicId) : null, // Update subtopic ID if provided
       },
     });
 
@@ -27,3 +28,4 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ message: 'An error occurred while updating the topic' }, { status: 500 });
   }
 }
+

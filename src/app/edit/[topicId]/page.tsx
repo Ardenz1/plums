@@ -21,6 +21,7 @@ export default async function NewTopicPage({ params }: { params: {topicId: strin
       <TopicForm 
         topicName={topic.topic_name}
         topicId={params.topicId}
+        topicSubTopic={topic.parent_id}
         btnType="save"
       />
     </main>

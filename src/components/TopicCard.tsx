@@ -37,7 +37,7 @@ const TopicCard = (props: Props) => {
               </a>
               <h2 className="text-black">{props.topicName}</h2>
             </div>
-            <i className="fa-solid fa-caret-right text-black"></i> {/* Caret icon */}
+            <i className="fa-solid fa-caret-right text-black"></i> 
           </div>
         </a>
     );
