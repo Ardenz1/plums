@@ -86,6 +86,7 @@ const LinkForm = (props: Props) => {
         onChange={handleTitleChange}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full"
         type="text"
+        placeholder='Add Title'
       />
 
       {/* hyperlink */}
@@ -97,6 +98,7 @@ const LinkForm = (props: Props) => {
         onChange={handleHyperlinkChange}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full"
         type="text"
+        placeholder='Add Hyperlink'
       />
 
       {/* description */}
@@ -107,6 +109,7 @@ const LinkForm = (props: Props) => {
         value={linkDescription}
         onChange={handleDescriptionChange}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
+        placeholder='Add Description'
       ></textarea>
 
       <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />

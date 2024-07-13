@@ -16,7 +16,12 @@ export const metadata: Metadata = {};
 export default async function SingleView({ params }: { params: { topicId: string, detail: string, detailId: string } }) {
   if (params.detail === "attachments") {
     metadata.title = "Attachment";
+    console.log('Detail ID:', params.detailId); // Add this line
+
     const attachment: Attachment = await getAttachmentById(parseInt(params.detailId));
+
+    console.log('Detail ID:', params.detailId); // Add this line
+
  
     if (!attachment) {
       return (

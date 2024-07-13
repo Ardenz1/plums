@@ -12,7 +12,7 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    const { title, subTopicId } = await req.json();
+    const { title, subTopicId, tags } = await req.json();
 
     const updatedTopic = await prisma.topic.update({
       where: { topic_id: Number(topicId) },
@@ -22,10 +22,26 @@ export async function PUT(req: NextRequest) {
       },
     });
 
+    // Remove existing tags
+    await prisma.topic_Tag.deleteMany({
+      where: { topic_id: Number(topicId) },
+    });
+
+    // Add new tags
+    if (tags && tags.length > 0) {
+      const tagData = tags.map((tagId: number) => ({
+        topic_id: Number(topicId),
+        tag_id: tagId,
+      }));
+
+      await prisma.topic_Tag.createMany({
+        data: tagData,
+      });
+    }
+
     return NextResponse.json(updatedTopic, { status: 200 });
   } catch (error) {
     console.error('Error updating topic:', error);
     return NextResponse.json({ message: 'An error occurred while updating the topic' }, { status: 500 });
   }
 }
-

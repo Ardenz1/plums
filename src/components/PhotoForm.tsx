@@ -98,6 +98,7 @@ const PhotoForm = (props: Props) => {
         onChange={handleTitleChange}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full"
         type="text"
+        placeholder='Add Title'
       />
 
       <label htmlFor="photoBlob" className="block text-sm font-medium text-plum-300">
@@ -116,6 +117,7 @@ const PhotoForm = (props: Props) => {
         value={fileName}
         onClick={handleFileInputClick}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full cursor-pointer"
+        placeholder='Add Photo'
       />
 
       <label htmlFor="photoDescription" className="block text-sm font-medium text-plum-300">
@@ -127,6 +129,7 @@ const PhotoForm = (props: Props) => {
         value={photoDescription}
         onChange={handleDescriptionChange}
         className="block border-solid border-4 border-leaf-200 rounded-xl p-1 px-2 mb-2 focus:border-plum-200 focus-visible:outline-none w-full resize-y"
+        placeholder='Add Description'
       ></textarea>
 
       <FooterButtons buttonPath={props.btnPath} buttonType={props.btnType} />

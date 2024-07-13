@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function GET(req: NextRequest) {
   try {
     const topics = await prisma.topic.findMany();
-    console.log('Fetched topics:', topics); // Logging fetched topics
+    console.log('Fetched topics:', topics); 
 
     return NextResponse.json(topics, { status: 200 });
   } catch (error) {
