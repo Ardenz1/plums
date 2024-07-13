@@ -74,6 +74,14 @@ export async function getTopicById(topic_id: number) {
   return topic;
 }
 
+// GET topic by tag
+export async function getTopicIdsbyTagId(tag_id: number) {
+  const topic = await prisma.topic_tag.findMany({
+    where: { tag_id: tag_id }
+  });
+  return topic;
+}
+
 // GET topic details by topic id 
 export async function getTopicDetails(topic_detail_id: number) {
   const topicDetails = await prisma.topic_Detail.findUnique({
@@ -82,9 +90,8 @@ export async function getTopicDetails(topic_detail_id: number) {
       notes: true,
       links: true,
       photos: true,
-      attachments: true
+      attachments: true,
     }
-    
   });
   return topicDetails;
 }
@@ -92,7 +99,10 @@ export async function getTopicDetails(topic_detail_id: number) {
 // returns all attachments by topic id
 export async function getAllAttachments(topic_detail_id: number) {
   const attachments = await prisma.Attachment.findMany({
-    where: { topic_detail_id: topic_detail_id }
+    where: { 
+      topic_detail_id: topic_detail_id,
+      is_deleted: false,
+    }
   });
   return attachments;
 }
@@ -100,7 +110,10 @@ export async function getAllAttachments(topic_detail_id: number) {
 // returns all links by topic id
 export async function getAllLinks(topic_detail_id: number) {
   const links = await prisma.Link.findMany({
-    where: { topic_detail_id: topic_detail_id }
+    where: { 
+      topic_detail_id: topic_detail_id,
+      is_deleted: false,
+    }
   });
   return links;
 }
@@ -108,7 +121,10 @@ export async function getAllLinks(topic_detail_id: number) {
 // returns all notes by topic id
 export async function getAllNotes(topic_detail_id: number) {
   const notes = await prisma.Note.findMany({
-    where: { topic_detail_id: topic_detail_id }
+    where: { 
+      topic_detail_id: topic_detail_id,
+      is_deleted: false,
+    }
   });
   return notes;
 }
@@ -116,7 +132,10 @@ export async function getAllNotes(topic_detail_id: number) {
 // GET all photos by topic id
 export async function getAllPhotos(topic_detail_id: number) {
   const photos = await prisma.Photo.findMany({
-    where: { topic_detail_id: topic_detail_id }
+    where: { 
+      topic_detail_id: topic_detail_id,
+      is_deleted: false,
+    }
   });
   return photos;
 }

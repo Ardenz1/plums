@@ -17,6 +17,7 @@ const AttachmentForm = (props: Props) => {
   const router = useRouter();
   const path = usePathname();
   const redirectUrl = path.split('/').slice(0, -1).join('/');
+  // console.log(redirectUrl)
 
   const [attachmentTitle, setAttachmentTitle] = useState(props.attachmentTitle);
   const [attachmentFile, setAttachmentFile] = useState<File | null>(null);
@@ -51,6 +52,7 @@ const AttachmentForm = (props: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    console.log(redirectUrl)
 
     const formData = new FormData();
     formData.append("title", attachmentTitle);

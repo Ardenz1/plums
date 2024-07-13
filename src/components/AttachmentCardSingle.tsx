@@ -1,5 +1,10 @@
-import CopyBtn from "./CopyBtn";
+'use client'
+import { useState } from "react";
+import { usePathname, useRouter } from 'next/navigation';
 
+import CopyBtn from "./CopyBtn";
+import FooterButtons from "./FooterButtons";
+ 
 export interface Props {
   attachment: string;
   attachmentTitle: string;
@@ -28,24 +33,50 @@ const AttachmentCardSingle = (props: Props) => {
     fileIcon = 'fa-solid fa-file';
   }
 
+  const router = useRouter()
+  const pathChunks = usePathname().split('/');
+  const redirectUrl = pathChunks.slice(0, -1).join('/');
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("isDeleted", "true");
+
+    try {
+      const response = await fetch(`/api/attachments/delete/${pathChunks[4]}`, {
+        method: 'PUT',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+      }
+
+      const result = await response.json();
+      console.log(result);
+
+      router.push(`${redirectUrl}`);
+    } catch (error: any) {
+      setError(error.message);
+    }
+  }
+ 
   return (
-    <div className="bg-plum-100 p-5 rounded-2xl mb-2">
-            {/* <i className={`${fileIcon} text-4xl mb-3`}></i> */}
-          <a
-          href={props.attachment}
-          download>
-              <i className={`${fileIcon} text-4xl`}></i>
-              <p className=" text-plum-300 mb-3 " style={{ fontSize: '0.5rem' }}>Download</p>
-        </a>
-         <div className="flex justify-between">
+    <form onSubmit={handleSubmit} className=" bg-plum-100 p-5 rounded-2xl mb-16">
+      <i className={`${fileIcon} text-4xl mb-3`}></i>
+      <div className="flex justify-between">
         <h2 className="font-bold text-sm">{props.attachmentTitle}</h2>
-        <CopyBtn copyText={props.attachmentDescription} />
+        <CopyBtn copyText={props.attachmentDescription}/>
       </div>
       <p className="font-thin text-xs mb-3">{dateString}</p>
       <p className="text-sm">{props.attachmentDescription}</p>
-  
-    </div>
-  );
-};
-
+      <FooterButtons buttonPath={`${pathChunks.join('/')}/edit`} buttonType="delete" />
+    </form>
+  )
+}
+ 
 export default AttachmentCardSingle;

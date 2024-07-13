@@ -29,24 +29,24 @@ const TopicCard = (props: Props) => {
 
   if (!props.hasSubTopics) {
     return (
-        <a href={`/topicDetails/${props.topicId}`} className="block">
-          <div className="flex justify-between items-center bg-leaf-200 p-5 rounded-2xl mb-2">
-            <div className="flex items-center space-x-2 cursor-pointer">
-              <a href={`edit/${props.topicId}`} className="text-leaf-300">
-                <i className="fa-solid fa-pen"></i>
-              </a>
-              <h2 className="text-black">{props.topicName}</h2>
-            </div>
-            <i className="fa-solid fa-caret-right text-black"></i> 
+      <a href={`/topicDetails/${props.topicId}`} className="block">
+        <div className="flex justify-between bg-leaf-200 p-5 rounded-2xl mb-2">
+          <div className="flex justify-start cursor-pointer">
+            <a href={`edit/${props.topicId}`} className="pr-2 text-leaf-300">
+              <i className="fa-solid fa-pen"></i>
+            </a>
+            <h2 className="text-black">{props.topicName}</h2>
           </div>
-        </a>
+          <i className="fa-solid fa-caret-right text-black"></i> 
+        </div>
+      </a>
     );
   } else {
     return (
-      <div className="flex items-center bg-leaf-200 p-5 rounded-2xl mb-2">
+      <div className="flex justify-between bg-leaf-200 p-5 rounded-2xl mb-2">
             <a href={`/topicDetails/${props.topicId}`} className="flex-grow">
-            <div className="flex items-center space-x-2 cursor-pointer">
-                <a href={`edit/${props.topicId}`} className="text-leaf-300">
+            <div className="flex justify-start cursor-pointer">
+                <a href={`edit/${props.topicId}`} className="pr-2 text-leaf-300">
                     <i className="fa-solid fa-pen"></i>
                 </a>
               <h2 className="text-black">{props.topicName}</h2>
