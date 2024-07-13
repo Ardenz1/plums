@@ -1,5 +1,5 @@
 import { getTopicDetails } from "@/database/database";
-import { Topic_Detail } from "@prisma/client";
+import { Attachment, Link, Note, Photo } from "@prisma/client";
 
 export interface Props {
   topicId: number;
@@ -8,10 +8,17 @@ export interface Props {
 
 const TopicDetails = (props: Props) => {
   // get counts for detail amounts
-  let attachmentCount = props.topicDetails.attachments.length;
-  let linkCount = props.topicDetails.links.length;
-  let noteCount = props.topicDetails.notes.length;
-  let photoCount = props.topicDetails.photos.length;
+  let details = props.topicDetails
+  
+  let attachmentCount: number = 0;
+  let linkCount: number = 0;
+  let noteCount: number = 0;
+  let photoCount: number = 0;
+  if (details.attachments.length > 0) details.attachments.forEach((attachment: Attachment) => {if (!attachment.is_deleted) attachmentCount++});
+  if (details.links.length > 0) details.links.forEach((link: Link) => {if (!link.is_deleted) linkCount++});
+  if (details.notes.length > 0) details.notes.forEach((note: Note) => {if (!note.is_deleted) noteCount++});
+  if (details.photos.length > 0) details.photos.forEach((photo: Photo) => {if (!photo.is_deleted) photoCount++});
+
   return (
     <section>
       <a href={`/topicDetails/${props.topicId}/notes/`}>
