@@ -1,64 +1,4 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
-
-// POST attachment
-export async function addAttachment(attachment_header: string, attachment_description: string, attachment_link: string, topic_detail_id: number) {
-  const attachment = await prisma.Attachment.create({
-    data: {
-      attachment_header: attachment_header,
-      attachment_description: attachment_description,
-      attachment_blob: attachment_link,
-      topic_detail: {
-        connect: { topic_detail_id: topic_detail_id }
-      }
-    }
-  })
-  return attachment;
-}
-
-// POST link
-export async function addLink(link_header: string, link_description: string, link_hyperlink: string, topic_detail_id: number) {
-  const link = await prisma.Link.create({
-    data: {
-      link_header: link_header,
-      link_description: link_description,
-      link_hyperlink: link_hyperlink,
-      topic_detail: {
-        connect: { topic_detail_id: topic_detail_id }
-      }
-    }
-  })
-  return link;
-}
-
-// POST note
-export async function addNote(note_header: string, note_description: string, topic_detail_id: number) {
-  const note = await prisma.Note.create({
-    data: {
-      note_header: note_header,
-      note_description: note_description,
-      topic_detail: {
-        connect: { topic_detail_id: topic_detail_id }
-      }
-    }
-  })
-  return note;
-}
-
-// POST photo
-export async function addPhoto(photo_header: string, photo_description: string, photo_path: string, topic_detail_id: number) {
-  const photo = await prisma.Photo.create({
-    data: {
-      photo_header: photo_header,
-      photo_description: photo_description,
-      photo_photo: photo_path,
-      topic_detail: {
-        connect: { topic_detail_id: topic_detail_id }
-      }
-    }
-  })
-  return photo;
-}
+import prisma from '@/database/client';
 
 // GET all topics
 export async function getAllTopics() {
@@ -76,7 +16,7 @@ export async function getTopicById(topic_id: number) {
 
 // GET topic by tag
 export async function getTopicIdsbyTagId(tag_id: number) {
-  const topic = await prisma.topic_tag.findMany({
+  const topic = await prisma.topic_Tag.findMany({
     where: { tag_id: tag_id }
   });
   return topic;
@@ -87,10 +27,10 @@ export async function getTopicDetails(topic_detail_id: number) {
   const topicDetails = await prisma.topic_Detail.findUnique({
     where: { topic_detail_id: topic_detail_id},
     select: {
-      notes: true,
-      links: true,
-      photos: true,
       attachments: true,
+      links: true,
+      notes: true,
+      photos: true,
     }
   });
   return topicDetails;
@@ -98,7 +38,7 @@ export async function getTopicDetails(topic_detail_id: number) {
 
 // returns all attachments by topic id
 export async function getAllAttachments(topic_detail_id: number) {
-  const attachments = await prisma.Attachment.findMany({
+  const attachments = await prisma.attachment.findMany({
     where: { 
       topic_detail_id: topic_detail_id,
       is_deleted: false,
@@ -109,7 +49,7 @@ export async function getAllAttachments(topic_detail_id: number) {
 
 // returns all links by topic id
 export async function getAllLinks(topic_detail_id: number) {
-  const links = await prisma.Link.findMany({
+  const links = await prisma.link.findMany({
     where: { 
       topic_detail_id: topic_detail_id,
       is_deleted: false,
@@ -120,7 +60,7 @@ export async function getAllLinks(topic_detail_id: number) {
 
 // returns all notes by topic id
 export async function getAllNotes(topic_detail_id: number) {
-  const notes = await prisma.Note.findMany({
+  const notes = await prisma.note.findMany({
     where: { 
       topic_detail_id: topic_detail_id,
       is_deleted: false,
@@ -131,7 +71,7 @@ export async function getAllNotes(topic_detail_id: number) {
 
 // GET all photos by topic id
 export async function getAllPhotos(topic_detail_id: number) {
-  const photos = await prisma.Photo.findMany({
+  const photos = await prisma.photo.findMany({
     where: { 
       topic_detail_id: topic_detail_id,
       is_deleted: false,
@@ -142,7 +82,7 @@ export async function getAllPhotos(topic_detail_id: number) {
 
 // GET a single link by id
 export async function getAttachmentById(attachment_id: number) {
-  const attachment = await prisma.Attachment.findUnique({
+  const attachment = await prisma.attachment.findUnique({
     where: { attachment_id: attachment_id }
   });
   return attachment;
@@ -150,7 +90,7 @@ export async function getAttachmentById(attachment_id: number) {
 
 // GET a single link by id
 export async function getLinkById(link_id: number) {
-  const link = await prisma.Link.findUnique({
+  const link = await prisma.link.findUnique({
     where: { link_id: link_id }
   });
   return link;
@@ -158,7 +98,7 @@ export async function getLinkById(link_id: number) {
 
 // GET a single note by id
 export async function getNoteById(note_id: number) {
-  const note = await prisma.Note.findUnique({
+  const note = await prisma.note.findUnique({
     where: { note_id: note_id }
   });
   return note;
@@ -166,7 +106,7 @@ export async function getNoteById(note_id: number) {
 
 // GET a single photo by id
 export async function getPhotoById(photo_id: number) {
-  const photo = await prisma.Photo.findUnique({
+  const photo = await prisma.photo.findUnique({
     where: { photo_id: photo_id }
   });
   return photo;

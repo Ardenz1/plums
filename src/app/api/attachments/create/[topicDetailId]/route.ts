@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { writeFile } from 'fs/promises';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '@/database/client';
 
 export async function POST(req: Request) {
   try {

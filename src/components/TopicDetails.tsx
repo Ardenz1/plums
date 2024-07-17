@@ -1,4 +1,3 @@
-import { getTopicDetails } from "@/database/database";
 import { Attachment, Link, Note, Photo } from "@prisma/client";
 
 export interface Props {

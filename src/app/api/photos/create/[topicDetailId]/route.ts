@@ -3,9 +3,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { writeFile } from 'fs/promises';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '@/database/client';
 
 export async function POST(req: Request) {
   try {
@@ -33,14 +31,14 @@ export async function POST(req: Request) {
       const buffer = Buffer.from(await file.arrayBuffer());
       const filename = file.name.replace(/\s/g, '_');
       await writeFile(path.join(process.cwd(), 'public/uploads/' + filename), buffer);
-      photoPath = `/uploads/${filename}`;
+      photoPath = filename !== 'null' ? `/uploads/${filename}` : '';
     }
 
     const newPhoto = await prisma.photo.create({
       data: {
         photo_header: title,
         photo_description: description,
-        photo_path: photoPath !== null ? photoPath : '', 
+        photo_path: photoPath, 
         topic_detail_id: Number(topicDetailId),
       },
     });

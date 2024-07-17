@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodePath from 'path'
 import { writeFile } from 'fs/promises';
-import { PrismaClient } from '@prisma/client';
- 
-const prisma = new PrismaClient();
+import prisma from '@/database/client';
  
 export async function PUT(req: NextRequest) {
   const urlPath = req.nextUrl.pathname; // Rename 'path' to 'urlPath' or any other name

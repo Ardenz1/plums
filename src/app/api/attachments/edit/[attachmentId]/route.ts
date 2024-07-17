@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { writeFile } from 'fs/promises';
-import { PrismaClient } from '@prisma/client';
- 
-const prisma = new PrismaClient();
- 
+import prisma from '@/database/client';
+
 export async function PUT(req: Request, { params }: { params: { attachmentId: string } }) {
   const attachmentId = params.attachmentId;
  

@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '@/database/client';
 
 export async function PUT(req: NextRequest) {
   const path = req.nextUrl.pathname;
