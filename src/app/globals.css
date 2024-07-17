@@ -25,3 +25,7 @@ h1 {
   padding-bottom: .4em;
   margin-bottom: .6em;
 }
+
+.parent-padding {
+  padding: 1.1em .75em 1.1em 1.25em;
+}
