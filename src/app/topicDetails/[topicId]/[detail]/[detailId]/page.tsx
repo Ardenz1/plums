@@ -18,8 +18,7 @@ export default async function SingleView({ params }: { params: { topicId: string
 
     const attachment: any = await getAttachmentById(parseInt(params.detailId));
 
- 
-    if (!attachment) {
+     if (!attachment) {
       return (
         <main>
           <BackButton back={`/topicDetails/${params.topicId}`} />
