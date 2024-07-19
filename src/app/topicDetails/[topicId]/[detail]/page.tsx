@@ -48,11 +48,6 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           }
         </main>
       )
-      // sample cards
-      // <AttachmentCard attachment="file.docx" attachmentTitle="New Word File" attachmentDescription="This is a new attachment in a word file, look!" attachmentCreated={date} />
-      // <AttachmentCard attachment="file.py" attachmentTitle="New Python File" attachmentDescription="This is a new attachment in a python file, look!" attachmentCreated={date} />
-      // <AttachmentCard attachment="file.txt" attachmentTitle="New Text File" attachmentDescription="This is a new attachment in a text file, look!" attachmentCreated={date} />
-      // <AttachmentCard attachment="file.pdf" attachmentTitle="New PDF File" attachmentDescription="This is a new attachment in a pdf file, look!" attachmentCreated={date} />
     }
   } else if (params.detail === "links") {
     metadata.title = "Links";
@@ -87,9 +82,6 @@ export default async function DetailPages({ params }: { params: { topicId: strin
           }
         </main>
       )
-      // Sample link cards
-      // <LinkCard title="Link 1" link_created_at="April 1, 2024" link="https://www.google.com" description="this is a link description!!!"/>
-      // <LinkCard title="Link 2" link_created_at="April 7, 2024" link="https://www.canvas.com" description="this is another link description"/>
     }
   } else if (params.detail === "notes") {
     metadata.title = "Notes";
@@ -123,10 +115,6 @@ export default async function DetailPages({ params }: { params: { topicId: strin
             }
           </main>
         )
-        // sample note cards
-        // <NoteCard title="Note 1" note_created_at="April 1, 2024" description="this is a note description!!!" />
-        // <NoteCard title="Note 2" note_created_at="April 5, 2024" description="this is another note description!!!" />
-        // <NoteCard title="Note 3" note_created_at="April 15, 2024" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet orci et est gravida, at feugiat nunc ullamcorper. Praesent sodales cursus tempus. Integer sed sapien et nisi facilisis finibus quis sit amet nisl. Proin aliquam volutpat nisi, nec porta quam dapibus eu. Mauris consequat pellentesque risus ut finibus. In laoreet venenatis neque id malesuada. Nulla facilisi. Aenean nisi diam, ultrices in enim vitae, ullamcorper laoreet felis." />
       }
     } else if (params.detail === "photos") {
       metadata.title = "Photos";
@@ -149,9 +137,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
               return (
                 <PhotoCard 
                   key={photo.photo_id}
-                  // CANT FIGURE OUT BLOBSSS
-                  // photoLink={photo.photo_path}
-                  photoLink={photo.photo_path}
+                  photoLink={photo.photo_image}
                   photoTitle={photo.photo_header} 
                   photoCreated={photo.photo_created_at}
                   photoDescription={photo.photo_description}

@@ -43,7 +43,7 @@ const TopicCard = (props: Props) => {
   } else {
     return (
       <div className="flex justify-between items-center bg-leaf-200 parent-padding rounded-2xl mb-2">
-        <div className="flex justify-start cursor-pointer">
+        <div className="flex justify-start items-center cursor-pointer">
           <a href={`edit/${props.topicId}`} className="pr-2 text-leaf-300">
             <i className="fa-solid fa-pen"></i>
           </a>

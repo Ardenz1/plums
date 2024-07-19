@@ -6,7 +6,6 @@ import NoteCardSingle from "@/components/NoteCardSingle";
 import PhotoCardSingle from "@/components/PhotoCardSingle";
 
 import BackButton from "@/components/BackButton";
-import FooterButtons from "@/components/FooterButtons";
 
 import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
 import { Attachment, Link, Note, Photo } from "@prisma/client";
@@ -18,7 +17,7 @@ export default async function SingleView({ params }: { params: { topicId: string
     metadata.title = "Attachment";
     console.log('Detail ID:', params.detailId); // Add this line
 
-    const attachment: Attachment = await getAttachmentById(parseInt(params.detailId));
+    const attachment: any = await getAttachmentById(parseInt(params.detailId));
 
     console.log('Detail ID:', params.detailId); // Add this line
 
@@ -48,7 +47,7 @@ export default async function SingleView({ params }: { params: { topicId: string
     }
   } else if (params.detail === "links") {
     metadata.title = "Link";
-    const link: Link = await getLinkById(parseInt(params.detailId));
+    const link: any = await getLinkById(parseInt(params.detailId));
 
     if (!link) {
       return (
@@ -75,7 +74,7 @@ export default async function SingleView({ params }: { params: { topicId: string
     )
   } else if (params.detail === "notes") {
     metadata.title = "Note";
-    const note: Note = await getNoteById(parseInt(params.detailId));
+    const note: any = await getNoteById(parseInt(params.detailId));
 
     if (!note) {
       return (
@@ -100,7 +99,7 @@ export default async function SingleView({ params }: { params: { topicId: string
     )
   } else if (params.detail === "photos") {
     metadata.title = "Photo";
-    const photo: Photo = await getPhotoById(parseInt(params.detailId));
+    const photo: any = await getPhotoById(parseInt(params.detailId));
 
     if (!photo) {
       return (

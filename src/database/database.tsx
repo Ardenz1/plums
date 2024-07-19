@@ -1,4 +1,5 @@
 import prisma from '@/database/client';
+import { Attachment, Link, Note, Photo } from '@prisma/client';
 
 // GET all topics
 export async function getAllTopics() {
@@ -110,4 +111,21 @@ export async function getPhotoById(photo_id: number) {
     where: { photo_id: photo_id }
   });
   return photo;
+}
+
+// GET all photos by topic id
+export async function getAllDeleted() {
+  const attachments = await prisma.attachment.findMany({
+    where: { is_deleted: true }
+  })
+  const links = await prisma.link.findMany({
+    where: { is_deleted: true }
+  })
+  const notes = await prisma.note.findMany({
+    where: { is_deleted: true }
+  })
+  const photos = await prisma.photo.findMany({
+    where: { is_deleted: true }
+  })
+  return [attachments, links, notes, photos];
 }

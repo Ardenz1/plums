@@ -16,6 +16,7 @@ export default function CopyBtn(props: Props) {
 
   return (
     <button
+      type="button"
       className={`transition-transform ${isClicked ? 'animate-customSpinAnimation' : ''}`}
       onClick={handleClick}
     >
