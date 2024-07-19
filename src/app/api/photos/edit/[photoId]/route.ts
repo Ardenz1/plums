@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodePath from 'path'
 import { writeFile } from 'fs/promises';
 import prisma from '@/database/client';
+
+export const runtime = 'nodejs'; 
+
  
 export async function PUT(req: NextRequest) {
   const urlPath = req.nextUrl.pathname; // Rename 'path' to 'urlPath' or any other name
   const photoId = urlPath.split('/').pop();
  
-  console.log('Full path:', urlPath);
-  console.log('Extracted photoId:', photoId);
  
   if (!photoId) {
     return NextResponse.json({ message: 'Photo ID parameter is missing' }, { status: 400 });
@@ -52,8 +53,3 @@ export async function PUT(req: NextRequest) {
   }
 }
  
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

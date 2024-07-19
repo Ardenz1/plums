@@ -3,6 +3,8 @@ import path from 'path';
 import { writeFile } from 'fs/promises';
 import prisma from '@/database/client';
 
+export const runtime = 'nodejs'; 
+
 export async function PUT(req: Request, { params }: { params: { attachmentId: string } }) {
   const attachmentId = params.attachmentId;
  
@@ -47,9 +49,3 @@ export async function PUT(req: Request, { params }: { params: { attachmentId: st
     return NextResponse.json({ message: 'An error occurred while updating the Attachment' }, { status: 500 });
   }
 }
- 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

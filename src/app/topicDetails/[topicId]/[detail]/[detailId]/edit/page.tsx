@@ -5,6 +5,8 @@ import LinkForm from "@/components/LinkForm";
 import NoteForm from "@/components/NoteForm";
 import PhotoForm from "@/components/PhotoForm";
 
+import { Note, Attachment, Link, Photo } from "@prisma/client";
+
 import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
 
 import BackButton from "@/components/BackButton";
@@ -17,7 +19,7 @@ export const metadata: Metadata = {};
 export default async function DetailPages({ params }: { params: { topicId: string, detail: string, detailId: string } }) {
   if (params.detail === "attachments") {
     metadata.title = "Edit Attachment";
-    const attachment = await getAttachmentById(parseInt(params.detailId));
+    const attachment: any = await getAttachmentById(parseInt(params.detailId));
     
     return (
       <main>
@@ -35,7 +37,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
     )
   } else if (params.detail === "links") {
     metadata.title = "Edit Link";
-    const link = await getLinkById(parseInt(params.detailId));
+    const link: any = await getLinkById(parseInt(params.detailId));
 
     return (
       <main>
@@ -53,7 +55,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
     )
   } else if (params.detail === "notes") {
     metadata.title = "Edit Note";
-    const note = await getNoteById(parseInt(params.detailId));
+    const note: any = await getNoteById(parseInt(params.detailId));
     return (
       <main>
         <BackButton back={`/topicDetails/${params.topicId}/notes/${params.detailId}`}/>
@@ -69,7 +71,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
     )
   } else if (params.detail === "photos") {
     metadata.title = "Edit Photo";
-    const photo = await getPhotoById(parseInt(params.detailId));
+    const photo: any = await getPhotoById(parseInt(params.detailId));
 
     return (
       <main>

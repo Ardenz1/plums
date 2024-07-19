@@ -60,7 +60,6 @@ const NoteForm = (props: Props) => {
       }
 
       const result = await response.json();
-      // console.log(isEdit ? 'Note updated:' : 'Note created:', result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {

@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default async function TopicDetailsPage({ params }: { params: { topicId: string } }){
   let topicDetails: any = await getTopicDetails(parseInt(params.topicId));
   let topic: any = await getTopicById(parseInt(params.topicId));
-  // console.log(topicDetails)
   return (
     <main>
       <BackButton back="/" />

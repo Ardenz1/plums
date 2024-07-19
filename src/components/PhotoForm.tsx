@@ -78,7 +78,6 @@ const PhotoForm = (props: Props) => {
       }
 
       const result = await response.json();
-      console.log(isEdit ? 'Photo updated:' : 'Photo created:', result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {

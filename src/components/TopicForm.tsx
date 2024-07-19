@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 export interface Props {
   topicName: string;
-  topicSubTopic: number | null;
+  topicSubTopic: number | null |string;
   btnType: string;
   topicId: string;
 }
@@ -85,7 +85,6 @@ const TopicForm = (props: Props) => {
       }
 
       const updatedTopic = await response.json();
-      console.log('Topic updated:', updatedTopic);
 
       router.push(`/`);
     } catch (error: any) {

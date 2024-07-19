@@ -14,6 +14,8 @@ export default async function NewTopicPage(){
       <h1 className="text-plum-300 ">Create Topic</h1>
       <TopicForm 
         topicName=""
+        topicId=""
+        topicSubTopic= ""
         btnType="create"
       />
     </main>

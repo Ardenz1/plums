@@ -83,6 +83,7 @@ model Attachment {
 model Tag {
   tag_id    Int         @id @default(autoincrement())
   tag       String
+  is_deleted             Boolean      @default(false)
   Topic_Tag Topic_Tag[]
 }
 

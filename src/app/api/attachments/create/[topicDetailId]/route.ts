@@ -3,6 +3,9 @@ import path from 'path';
 import { writeFile } from 'fs/promises';
 import prisma from '@/database/client';
 
+export const runtime = 'nodejs'; 
+
+
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
@@ -48,8 +51,3 @@ export async function POST(req: Request) {
   }
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

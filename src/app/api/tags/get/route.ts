@@ -3,8 +3,11 @@ import prisma from '@/database/client';
 
 export async function GET(req: NextRequest) {
   try {
-    const tags = await prisma.tag.findMany();
-    console.log('Fetched tags:', tags);
+    const tags = await prisma.tag.findMany({
+      where: {
+        is_deleted: false,
+      },
+    });
 
     return NextResponse.json(tags, { status: 200 });
   } catch (error) {

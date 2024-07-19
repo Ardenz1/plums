@@ -13,7 +13,6 @@ export interface Props {
 }
 
 const AttachmentCardSingle = (props: Props) => {
-  console.log('Attachment ID:', props.attachment); // Example line to log attachment ID or related props
 
   let date: string[] = String(props.attachmentCreated).split(' ');
   let dateString: string = `${date[1]} ${date[2]}, ${date[3]}`;

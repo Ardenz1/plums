@@ -50,7 +50,6 @@ const LinkForm = (props: Props) => {
       ...(isEdit ? {} : { topicDetailId: props.topicDetailId }), 
     });
 
-    console.log('Submitting request:', { url, method, body });
 
     try {
       const response = await fetch(url, {
@@ -67,7 +66,6 @@ const LinkForm = (props: Props) => {
       }
 
       const result = await response.json();
-      console.log(isEdit ? 'Link updated:' : 'Link created:', result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {

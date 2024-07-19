@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/database/client';
+
+export const runtime = 'nodejs'; 
+
  
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const id = params.id;
@@ -29,8 +32,3 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
  
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

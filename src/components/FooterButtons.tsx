@@ -22,6 +22,9 @@ const FooterButtons = (props: Props) =>  {
   } else if (props.buttonType === "save" || props.buttonType === "edit") {
     buttonOneText = "Cancel";
     buttonTwoText = "Save";
+  } else if (props.buttonType === "deleteSave") {
+    buttonOneText = "Delete";
+    buttonTwoText = "Save";
   } 
   
   return (
