@@ -67,7 +67,10 @@ const AttachmentCardSingle = (props: Props) => {
  
   return (
     <form onSubmit={handleSubmit} className=" bg-plum-100 p-5 rounded-2xl mb-16">
-      <i className={`${fileIcon} text-4xl mb-3`}></i>
+      <a href={props.attachment} download>
+        <i className={`${fileIcon} text-4xl`}></i>
+        <p className=" text-plum-300 mb-3 " style={{ fontSize: '0.5rem' }}>Download</p>
+      </a>
       <div className="flex justify-between">
         <h2 className="font-bold text-sm">{props.attachmentTitle}</h2>
         <CopyBtn copyText={props.attachmentDescription}/>
