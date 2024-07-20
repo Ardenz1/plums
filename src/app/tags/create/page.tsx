@@ -1,7 +1,5 @@
 import CreateTagForm from "@/components/CreateTagForm";
 import BackButton from "@/components/BackButton"
-import {getTagById} from "@/database/database"
-import { Tag } from "@prisma/client";
 
 
 import { Metadata } from "next"

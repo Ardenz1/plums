@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       data: {
         photo_header: title,
         photo_description: description,
-        photo_path: photoPath || '', 
+        photo_image: photoPath !== null ? photoPath : '',
         topic_detail_id: Number(topicDetailId),
       },
     });
