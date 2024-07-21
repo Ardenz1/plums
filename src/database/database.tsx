@@ -1,5 +1,7 @@
 import prisma from '@/database/client';
 import { Attachment, Link, Note, Photo } from '@prisma/client';
+export const dynamic = 'force-dynamic';
+export const revalidate = 1; 
 
 // GET all topics
 export async function getAllTopics() {
