@@ -8,6 +8,8 @@ import BackButton from "@/components/BackButton";
 
 import { Attachment, Link, Note, Photo } from "@prisma/client"
 import { getAllDeleted } from "@/database/database";
+export const dynamic = "force-dynamic";
+
 
 export const metadata: Metadata = {
   title: "Topic Details",

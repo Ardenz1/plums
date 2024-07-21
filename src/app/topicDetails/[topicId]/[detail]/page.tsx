@@ -11,6 +11,8 @@ import { getAllAttachments, getAllLinks, getAllNotes, getAllPhotos } from "@/dat
 import { Attachment, Link, Note, Photo } from "@prisma/client";
 
 export const metadata: Metadata = {};
+export const dynamic = "force-dynamic";
+
 
 export default async function DetailPages({ params }: { params: { topicId: string, detail: string } }) {
   // detail slug should be attachments, links, notes, or photos

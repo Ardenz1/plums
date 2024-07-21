@@ -6,6 +6,7 @@ import { Topic } from "@prisma/client";
 
 
 import { Metadata } from "next"
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: 'Edit Topic',

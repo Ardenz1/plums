@@ -8,6 +8,8 @@ import PhotoForm from "@/components/PhotoForm";
 import BackButton from "@/components/BackButton";
 
 // import { Attachment, Link, Note, Photo } from "@prisma/client";
+export const dynamic = "force-dynamic";
+
 
 export const metadata: Metadata = {};
 

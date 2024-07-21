@@ -5,6 +5,8 @@ import BackButton from "@/components/BackButton"
 
 // import { Topic_Detail, Topic } from "@prisma/client"
 import { getTopicDetails, getTopicById } from "@/database/database"
+export const dynamic = "force-dynamic";
+
 
 export const metadata: Metadata = {
   title: 'Topic Details',
