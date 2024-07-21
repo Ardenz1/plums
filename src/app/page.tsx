@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: 'Topics',
 };
 
+export const dynamic = "force-dynamic";
+
+
+
 export default async function Home() {
   let topicList: Topic[] = await getAllTopics();
 
