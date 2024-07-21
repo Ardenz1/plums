@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+
 export interface Props {
   topicId: number;
   topicName: string;
@@ -9,15 +10,15 @@ export interface Props {
 
 const TopicCard = (props: Props) => {
   useEffect(() => {
-    hideSubTopics(); // Hide subtopics when component mounts
-  }, []); // Empty dependency array ensures this runs only once on mount
+    const hideSubTopics = () => {
+      let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);
+      subTopics.forEach((subTopic) => {
+        subTopic.classList.add("hidden");
+      });
+    };
 
-  const hideSubTopics = () => {
-    let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);
-    subTopics.forEach((subTopic) => {
-      subTopic.classList.add("hidden");
-    });
-  };
+    hideSubTopics();
+  }, [props.topicId]); 
 
   const toggleSubTopics = () => {
     let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);

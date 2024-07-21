@@ -12,15 +12,15 @@ export interface Props {
 
 const SubTopicCard = (props: Props) => {
   useEffect(() => {
-    hideSubTopics(); // Hide subtopics when component mounts
-  }, []); // Empty dependency array ensures this runs only once on mount
+    const hideSubTopics = () => {
+      let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);
+      subTopics.forEach((subTopic) => {
+        subTopic.classList.add("hidden");
+      });
+    };
 
-  const hideSubTopics = () => {
-    let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);
-    subTopics.forEach((subTopic) => {
-      subTopic.classList.add("hidden");
-    });
-  };
+    hideSubTopics(); // Hide subtopics when component mounts
+  }, [props.topicId]); // Adding props.topicId as dependency to be safe
 
   const toggleSubTopics = () => {
     let subTopics = document.querySelectorAll(`.subtopic-${props.topicId}`);
