@@ -2,18 +2,23 @@ import prisma from '@/database/client';
 import { Attachment, Link, Note, Photo } from '@prisma/client';
 
 // GET all topics
-// export async function getAllTopics() {
-//   const topics = await prisma.topic.findMany();
-//   return topics;
-// }
+export async function getAllTopics() {
+  const topics = await prisma.topic.findMany({
+    where: { is_deleted: false, },
+    include: { Topic_Tag: true, },
+  });
+  return topics;
+}
 
-  export async function getAllTopics() {
-    const topics = await prisma.topic.findMany({
-      where: { 
-        is_deleted: false
-      }
-    });
-    return topics;}
+// GET all topics
+export async function getAllTags() {
+  const tags = await prisma.tag.findMany({
+    where: { is_deleted: false, },
+
+  });
+  return tags;
+}
+
 // GET topic by id
 export async function getTopicById(topic_id: number) {
   const topic = await prisma.topic.findUnique({
