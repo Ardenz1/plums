@@ -1,23 +1,24 @@
 'use client';
-import { useState, useEffect } from 'react';
-import FooterButtons from "./FooterButtons";
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 export interface Props {
   topicName: string;
   topicSubTopic: number | null | string;
-  btnType: string;
   topicId: string;
 }
 
 const TopicForm = (props: Props) => {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [topics, setTopics] = useState<{ topic_id: number, topic_name: string }[]>([]);
   const [topicName, setTopicName] = useState(props.topicName);
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(props.topicSubTopic ? props.topicSubTopic.toString() : null);
   const [selectedTags, setSelectedTags] = useState<{ tag_id: number, tag: string }[]>([]);
   const [tagSelectValue, setTagSelectValue] = useState("");
   const [tags, setTags] = useState<{ tag_id: number, tag: string }[]>([]);
+  const [action, setAction] = useState<'save' | 'delete' | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTopicsAndTags = async () => {
@@ -67,36 +68,53 @@ const TopicForm = (props: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
 
     try {
-      const response = await fetch(`/api/topics/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: topicName,
-          subTopicId: selectedTopicId ? parseInt(selectedTopicId) : null,
-          tags: selectedTags.map(tag => tag.tag_id),
-        }),
-      });
+      if (action === 'save') {
+        const response = await fetch(`/api/topics/edit/${props.topicId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: topicName,
+            subTopicId: selectedTopicId ? parseInt(selectedTopicId) : null,
+            tags: selectedTags.map(tag => tag.tag_id),
+          }),
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to create the topic');
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage);
+        }
+
+        router.push(`/`);
+      } else if (action === 'delete') {
+        const response = await fetch(`/api/topics/delete/${props.topicId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ isDeleted: true }),
+        });
+
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage);
+        }
+
+        router.push(`/`);
       }
-
-      const createdTopic = await response.json();
-      router.push(`/`);
     } catch (error: any) {
-      console.error('Error creating topic:', error);
+      setError(error.message);
     }
   };
 
   const filteredTopics = topics.filter(topic => topic.topic_id !== parseInt(props.topicId));
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <label htmlFor="topicName" className="block text-sm font-medium text-plum-300">Topic Name</label>
       <input
         id="topicName"
@@ -147,7 +165,27 @@ const TopicForm = (props: Props) => {
         ))}
       </div>
 
-      <FooterButtons buttonType={props.btnType} buttonPath="/" />
+      <div className="bg-white mt-auto flex justify-center items-center space-x-2">
+        <button
+          type="button"
+          className="border-4 border-leaf-200 rounded-xl my-3 p-1.5 w-full text-leaf-300 font-bold text-center"
+          onClick={() => {
+            setAction('delete');
+            formRef.current?.requestSubmit();
+          }}
+        >
+          Delete
+        </button>
+        <button
+          type="submit"
+          className="bg-leaf-200 rounded-xl my-3 p-2 w-full text-leaf-300 font-bold"
+          onClick={() => setAction('save')}
+        >
+          Save
+        </button>
+      </div>
+
+      {error && <p className="text-red-500 mt-2">{error}</p>}
     </form>
   );
 };

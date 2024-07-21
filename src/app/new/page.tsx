@@ -15,7 +15,7 @@ export default async function NewTopicPage(){
       <TopicForm 
         topicName=""
         topicId=""
-        topicSubTopic= ""
+        topicSubTopic= {null}
         btnType="create"
       />
     </main>

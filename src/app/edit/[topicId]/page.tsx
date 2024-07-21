@@ -1,4 +1,4 @@
-import TopicForm from "@/components/TopicForm";
+import EditDeleteTopicForm from "@/components/EditDeleteTopicForm";
 import BackButton from "@/components/BackButton"
 import {getTopicById} from "@/database/database"
 
@@ -18,11 +18,10 @@ export default async function NewTopicPage({ params }: { params: {topicId: strin
     <main>
       <BackButton back="/" />
       <h1 className="text-plum-300 ">Edit Topic</h1>
-      <TopicForm 
+      <EditDeleteTopicForm 
         topicName={topic!.topic_name}
         topicId={params.topicId}
         topicSubTopic={topic!.parent_id}
-        btnType="save"
       />
     </main>
   )
