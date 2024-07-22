@@ -5,10 +5,13 @@ import prisma from '@/database/client';
 
 export async function GET(req: NextRequest) {
   try {
-    const topics = await prisma.topic.findMany({
-      where: {
-        is_deleted: false,
-    }});
+    const topics = await prisma.topic.findMany(
+      { 
+        where: { is_deleted: false, }, 
+        include: { Topic_Tag: true }
+      }
+    );
+    console.log('Fetched topics:', topics); 
 
     return NextResponse.json(topics, { status: 200 });
   } catch (error) {

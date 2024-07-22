@@ -32,11 +32,11 @@ const Header = () => {
         <div className="flex direction-row space-between">
           {pathName === '/' && (
             <a href="/tags">
-              <i className="fa-solid fa-tag p-2 text-plum-300 bg-leaf-100 rounded-xl text-lg"></i>
+              <i className="fa-solid fa-tag p-2 text-plum-300 bg-plum-100 rounded-xl text-lg"></i>
             </a>
           )}
           <a href={pathName == "/" ? "/new" : `${pathName}/new`}>
-            <i className="fa-solid fa-plus p-2 mx-5 bg-leaf-100 rounded-xl text-lg"></i>
+            <i className="fa-solid fa-plus p-2 mx-4 bg-leaf-100 text-leaf-300 rounded-xl text-lg"></i>
           </a>
         </div>
       )}

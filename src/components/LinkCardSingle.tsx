@@ -24,7 +24,6 @@ const LinkCardSingle = (props: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    console.log("Weird", pathChunks)
 
     const formData = new FormData();
     formData.append("isDeleted", "true");
@@ -41,7 +40,6 @@ const LinkCardSingle = (props: Props) => {
       }
 
       const result = await response.json();
-      console.log(result);
 
       router.push(`${redirectUrl}`);
     } catch (error: any) {
