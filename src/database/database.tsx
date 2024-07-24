@@ -15,6 +15,9 @@ export async function getAllTopics() {
 // GET all topics
 export async function getAllTags() {
   const tags = await prisma.tag.findMany({
+    include: {
+      Topic_Tag: true,
+    },
     where: { is_deleted: false, },
 
   });
