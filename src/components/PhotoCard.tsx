@@ -9,8 +9,7 @@ export interface Props {
 }
 
 const PhotoCard = (props: Props) => {
-  // use this as the source attribute if the database stores images as blobs
-  // URL.createObjectURL(props.photoBlob);
+
 
   let date = String(props.photoCreated).split(' ');
   let dateString = `${date[1]} ${date[2]}, ${date[3]}`;

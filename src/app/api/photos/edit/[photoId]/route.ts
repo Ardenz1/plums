@@ -34,11 +34,11 @@ export async function PUT(req: NextRequest) {
     const updateData: any = {
       photo_header: title,
       photo_description: description,
-      photo_path: photoPath,
+      photo_image: photoPath,
     };
  
     if (photoPath) {
-      updateData.photo_path = photoPath;
+      updateData.photo_image = photoPath;
     }
  
     const updatedPhoto = await prisma.photo.update({

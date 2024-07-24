@@ -9,6 +9,7 @@ import BackButton from "@/components/BackButton";
 
 import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
 import { Attachment, Link, Note, Photo } from "@prisma/client";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {};
 

@@ -10,6 +10,8 @@ import { Note, Attachment, Link, Photo } from "@prisma/client";
 import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
 
 import BackButton from "@/components/BackButton";
+export const dynamic = "force-dynamic";
+
 
 // import { getAttachmentById, getLinkById, getNoteById, getPhotoById } from "@/database/database";
 // import { Attachment, Link, Note, Photo } from "@prisma/client";
@@ -80,7 +82,7 @@ export default async function DetailPages({ params }: { params: { topicId: strin
         <PhotoForm 
           photoId = {params.detailId}
           photoTitle={photo.photo_header}
-          photoLink={photo.photo_path}
+          photoLink={photo.photo_image}
           photoDescription={photo.photo_description}
           btnType="save"
           btnPath={`/topicDetails/${params.topicId}/photos/${params.detailId}/`}
