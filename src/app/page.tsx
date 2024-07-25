@@ -5,6 +5,9 @@ import TopicList from "@/components/TopicList";
 import { getAllTopics, getAllDeleted, getAllTags } from "@/database/database";
 import { Topic, Tag } from "@prisma/client";
 
+export const dynamic = 'force-dynamic';
+
+
 export const metadata: Metadata = {
   title: 'Topics',
 };
