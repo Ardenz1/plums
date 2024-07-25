@@ -28,7 +28,7 @@ export default function TopicList(props: Props) {
   const renderTopics = (topics: Topic[], parentId: number | null = null, level: number = 0) => {
     return topics
       .filter(topic => topic.parent_id === parentId)
-      .filter(topic => topic.Topic_Tag.filter((tag: any) => tag.tag_id == selectedTag).length > 0 || parseInt(selectedTag) == 0)
+      // .filter(topic => topic.Topic_Tag.filter((tag: any) => tag.tag_id == selectedTag).length > 0 || parseInt(selectedTag) == 0)
       .map(topic => {
         const hasSubtopics = topicsWithSubtopics.has(topic.topic_id);
 
