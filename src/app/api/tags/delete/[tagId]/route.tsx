@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import prisma from '@/database/client';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 
 export async function PUT(req: Request, { params }: { params: { tagId: string } }) {
   const tagId = params.tagId;

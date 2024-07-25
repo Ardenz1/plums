@@ -2,6 +2,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/database/client';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function PUT(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const tagId = path.split('/').pop();

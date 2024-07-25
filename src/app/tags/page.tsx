@@ -1,15 +1,12 @@
 import TagForm from "@/components/TagForm";
 import BackButton from "@/components/BackButton"
-
-
-
 import { Metadata } from "next"
-export const dynamic = "force-dynamic";
-
 
 export const metadata: Metadata = {
   title: 'Manage Tags',
 };
+export const dynamic = "force-dynamic";
+
 
 export default async function ManageTags(){
 
